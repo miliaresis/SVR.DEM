@@ -847,7 +847,7 @@ def printHST(RLST, Fstring, xmin, xmax, x, f, MDLabel):
     for X in range(RLST.shape[1]):
         plt.figure(1)
         plt.hist(RLST[:, X], bins=200, range=[xmin, xmax], normed=True,
-                 edgecolor='blue')
+                 edgecolor='white')
         plt.title(x[X])
         plt.xlabel(MDLabel[0])
         plt.ylabel("Frequency")
