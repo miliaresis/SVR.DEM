@@ -20,7 +20,7 @@ def program_constants():
     maxNBG =  Maximum number of NBG refinements """
     I = 29
     maxC = 100
-    maxNBG = 5
+    maxNBG = 250
     return I, maxC, maxNBG
 
 
@@ -579,6 +579,7 @@ def clustering_Kmeans_by_NBG(data, ML2, maxC, maxNBG, f, MDLabel,
     print('\nClustering refined by NBG (display standardized mean divergence)')
     print('\n   1st: K-means clustering ')
     Nofclusters = input_screen_int('       Number of clusters', 2, maxC)
+    maxNBG = input_screen_int('       Number of refinements', 5, maxNBG)
     clf = Kmeans_init(Nofclusters)
     X = clf.fit(data)
     Nofrefine = maxNBG
