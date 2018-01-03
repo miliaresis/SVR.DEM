@@ -52,8 +52,8 @@ def dataDEM2(clustering_options, tiff_import_options):
 # Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
     Lmin = 301
     Lmax = 2210
-    Rmin = 301
-    Rmax = 2210
+    Rmin = -25
+    Rmax = 25
 # clustering method: Kmeans refined by NBG
     clustering_method = clustering_options[1]
 # PIL Library is used for TIF file import
