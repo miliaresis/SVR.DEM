@@ -1,6 +1,6 @@
 # SVR.DEM
 **Dimension reduction of multi-dimentional elevation data for DEMs optimization**
-* A win python program consiting of 3 modules dmr_mg.py and the 2 library MODULEs dmr_data_headers, & dmr_myf.py (functions).
+* A win python program consiting of 3 modules dmr_mg.py and the 2 library MODULEs dmr_data_headers, & dmr_myf.py.
 * A YouTube video is available at .........
 * Data: includes .............................. (data.zip). 
 * **Used in publications**
