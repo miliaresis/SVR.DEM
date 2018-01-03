@@ -579,7 +579,7 @@ def clustering_Kmeans_by_NBG(data, ML2, maxC, maxNBG, f, MDLabel,
     print('\nClustering refined by NBG (display standardized mean divergence)')
     print('\n   1st: K-means clustering ')
     Nofclusters = input_screen_int('       Number of clusters', 2, maxC)
-    maxNBG = input_screen_int('       Number of refinements', 5, maxNBG)
+    maxNBG = input_screen_int('       Number of NBG refinements', 5, maxNBG)
     clf = Kmeans_init(Nofclusters)
     X = clf.fit(data)
     Nofrefine = maxNBG
@@ -712,7 +712,7 @@ def display_save_clusterimage(rows, cols, xyrange, data, labels, f, w, MDLabe):
     c = creatematrix(rows, cols, ids, labels)
     print('\nVisualize cluster image')
     f.write('\n   VISUALIZE cluster image & save to Clusters.png')
-    plotmatrix(c, xyrange, 'spectral', w, 'y', MDLabe)
+    plotmatrix(c, xyrange, 'nipy_spectral', w, 'y', MDLabe)
     savematrix2image(c, 'Clustermap')
     f.write('\n        Save to Clustermap.tif, & Clustermap.mat')
     display_save_maskimage(xyrange, c, MDLabe)
