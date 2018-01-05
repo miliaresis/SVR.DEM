@@ -3,8 +3,8 @@
 Created on  20th of December, 2017
 
 @author: gmiliar (George Ch. Miliaresis)
-Selective Variance Reduction for DEMs (dim reduction) by G.Ch. Miliaresis
-Ver. 2017.02 (winpython implementation, https://winpython.github.io/)
+Dimensonality reduction for DEMs (SVR.DEM reduction) by G.Ch. Miliaresis
+Ver. 2017.02 winpython implementation, (https://winpython.github.io/)
 Details in https://github.com/miliaresis
            https://sites.google.com/site/miliaresisg/
 """

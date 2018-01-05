@@ -3,8 +3,8 @@
 Created on  20th of December, 2017
 
 @author: gmiliar (George Ch. Miliaresis)
-Selective Variance Reduction for DEMs (dim reduction) by G. Ch.Miliaresis
-Ver. 2017.02 (winpython implementation, https://winpython.github.io/)
+Dimensonality reduction for DEMs (SVR.DEM reduction) by G.Ch. Miliaresis
+Ver. 2017.02 winpython implementation, (https://winpython.github.io/)
 Details in https://github.com/miliaresis
            https://sites.google.com/site/miliaresisg/
 ----------------------------------------------------------------
@@ -15,10 +15,10 @@ TO LOAD your data, define a header in the file svr_data_headers.py.
 
 def phead(xy, ML, row, col, x, x2, x3, Lmn, Lmx, Rmn, Rmx, vfile, LDIR, T, cm):
     """PRINT DATA HEADER.
-        DATA files are in a subdir named  data, data2, in the dir where the
+        DATA files stored in a subdir named  data within the dir where the
         3 scripts are stored.
        The tif image filenames in the data dir, are fixed :
-         MASK, and 01, 02, 03 for the 3 DEMs (ALOS, SRTM, ASTER)
+         MASK [0, 1 for data], & 01, 02, 03 for the 3 DEMs (ALOS, SRTM, ASTER)
          THE NAMES ARE CASE SENSITIVE and they are
          determined automatically from the script (as well as the dimension of
          the feature space -> length of tics list), so you should preserve them
@@ -44,7 +44,7 @@ def dataDEM2(clustering_options, tiff_import_options):
 # Main figure labels (title, x-axis, y-axis)
     ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
     # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
-    xy = [54.2361, 54.6008, 27.1108, 27.5555]
+    xy = [54.2362, 54.6810, 27.1107, 27.5555]
 # tics for axes of figures and cross-correlation matrix
     x2 = ['A', 'S', 'G']
     x = x2

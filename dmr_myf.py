@@ -3,9 +3,8 @@
 Created on  20th of December, 2017
 
 @author: gmiliar (George Ch. Miliaresis)
-Selective Variance Reduction for DEMs (DEM dimentional reduction)
-       by G.Ch. Miliaresis
-Ver. 2017.02 (winpython implementation, https://winpython.github.io/)
+Dimensonality reduction for DEMs (SVR.DEM reduction) by G.Ch. Miliaresis
+Ver. 2017.02 winpython implementation, (https://winpython.github.io/)
 Details in https://github.com/miliaresis
            https://sites.google.com/site/miliaresisg/
 """
@@ -14,21 +13,18 @@ import numpy as np
 
 def program_constants():
     """ program constants (you might increase them according to your needs)
-    I = Maximum possible iterations (Clusters) for inertia computation as well
-        as for BIC score for full covariance (GMM) computation
     maxC = Maximum number of clusters
     maxNBG =  Maximum number of NBG refinements """
-    I = 29
     maxC = 100
     maxNBG = 250
-    return I, maxC, maxNBG
+    return maxC, maxNBG
 
 
 def Processing_constants():
     """ Alternative clustering & tif import options.
             There are various options for TIFF import. The methods included are
         available in the default library available in WinPython. See function
-        tiff_to_np in svrmg_myf for the specific calls.
+        tiff_to_np in dim_myf for the specific calls.
         If    PIL  then Image from PIL is used
               SKITimage  then skimage.io is used
         The problems encountered has to do with the files format. For example
@@ -41,14 +37,9 @@ def Processing_constants():
         0/1 matrix. If your mask image pixel depth is 1-bit, or 1 byte or 2
         byte integers instead of float, data files will not be imported if you
         use SKIimage.io.
-        PIL is used for LST images since due to data value range (LAT,LON, LST,
-        H) are handled ok by PIL. In this case, you do not have to convert Mask
-        image to float. PIL might not be used for DayMET data due to the value
-        range of X and Y [in a newer version of these libraries, this situation
-        might be changed].
         CLUSTERING - CLASSIFICATION OPTIONS:
         These are the clustering options:
-            Kmeans -> K-means clastering
+            Kmeans -> K-means clustering
             Kmeans clustering refined by Naive Bayes Gaussian classification
             etc., etc.
     """
@@ -488,16 +479,6 @@ def prn_xls_cluster_membership(workbook, CLlabels):
         worksheet5.write(i+2, 3, 100 * data5[i] / rows)
 
 
-def ListdefineforaxisX(k):
-    """ define list for X axis labels (inertia graph) """
-    for i in range(k):
-        if i == 0:
-            Lx = ['2']
-        else:
-            Lx.append(str(i+2))
-    return Lx
-
-
 def Kmeans_init(number_of_clusters):
     """Kmeans initialization """
     from sklearn.cluster import KMeans
@@ -673,7 +654,7 @@ def plotmatrix(c, xyrange, lut, name1, yesno, MDLabel):
     """plot a matrix """
     import matplotlib.pyplot as plt
     plt.figure(1)
-    plt.imshow(c, cmap=lut, extent=xyrange)
+    plt.imshow(c, cmap=lut, aspect='equal', extent=xyrange)
     if yesno == 'y':
         plt.colorbar(label=MDLabel[0])
     plt.xlabel(MDLabel[1])
@@ -888,7 +869,7 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
             clustering_options):
     """ Main run module of SVR-mg.py"""
     f, oldpath = findpaths_data2csv(data)
-    In, maxC, mNBG = program_constants()
+    maxC, mNBG = program_constants()
     xyxstr = 'LST:Stats, Correlation, NPPS, Images, Histograms ? '
     Display_yesno2 = input_screen_str_yn(xyxstr)
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
