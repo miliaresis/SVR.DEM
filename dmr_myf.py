@@ -845,13 +845,30 @@ def print_RMS(Reconstruct, x, filename2, f):
     data[0, 2] = np.absolute((Reconstruct[:, 0] - Reconstruct[:, 2])).mean()
     data[2, 0] = data[0, 2]
     worksheet2 = workbook.add_worksheet()
-    worksheet2.write(1, 0, 'mean bsolute difference among 2 DEMs')
+    worksheet2.write(1, 0, 'mean absolute difference among 2 DEMs')
     worksheet2.name = 'abs_mean_dif'
     for i in range(0, data.shape[0]):
         worksheet2.write(1, i+2, x[i])
         worksheet2.write(i+2, 1, x[i])
         for j in range(0, data.shape[1]):
             worksheet2.write(i+2, j+2, str(round(data[i, j], 4)))
+    data[1, 2] = np.sqrt((Reconstruct[:, 1] - Reconstruct[:, 2]).T.dot(
+            Reconstruct[:, 1] - Reconstruct[:, 2])/(Reconstruct.shape[0]-1))
+    data[0, 1] = np.sqrt((Reconstruct[:, 0] - Reconstruct[:, 1]).T.dot(
+            Reconstruct[:, 0] - Reconstruct[:, 1])/(Reconstruct.shape[0]-1))
+    data[0, 2] = np.sqrt((Reconstruct[:, 0] - Reconstruct[:, 2]).T.dot(
+            Reconstruct[:, 0] - Reconstruct[:, 2])/(Reconstruct.shape[0]-1))
+    data[2, 1] = data[1, 2]
+    data[1, 0] = data[0, 1]
+    data[2, 0] = data[0, 2]
+    worksheet3 = workbook.add_worksheet()
+    worksheet3.write(1, 0, 'RMSE among 2 DEMs')
+    worksheet3.name = 'RMSE'
+    for i in range(0, data.shape[0]):
+        worksheet3.write(1, i+2, x[i])
+        worksheet3.write(i+2, 1, x[i])
+        for j in range(0, data.shape[1]):
+            worksheet3.write(i+2, j+2, str(round(data[i, j], 4)))
     workbook.close()
 
 
