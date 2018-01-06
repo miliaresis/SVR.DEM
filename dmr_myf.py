@@ -338,7 +338,7 @@ def ImplementSVR_MG(data, Labelmonth1, f):
     """main calls to SVR_MG """
     print('__________________________________________________________________')
     Ids, LST = create_data_files(data)
-    print('\nSVR IMPLEMENTATION')
+    print('\nDimensionality Reduction IMPLEMENTATION')
     f.write('\nSVR IMPLEMENTATION')
     data2 = data[:, 1:data.shape[1]]
     crosscorrelation = crosscorrelate(data2)
@@ -350,12 +350,12 @@ def ImplementSVR_MG(data, Labelmonth1, f):
     pc1_or2_3 = 1
     xyxstr = 'reconstruct from PC1 (yes) else from PC2 & PC3 (no)? '
     Display_yesno2 = input_screen_str_yn(xyxstr)
-    if xyxstr in ['n', 'N']:
-        pc1_or2_3 = 2
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         Reconstruct = Reconstruct_matrix(evmat, LST)
+        pc1_or2_3 = 1
     else:
         Reconstruct = Reconstruct_matrix2(evmat, LST)
+        pc1_or2_3 = 2
     return Reconstruct, pc1_or2_3
 
 
@@ -839,10 +839,11 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
         display_RLST(rows, cols, GeoExtent, data, Reconstruct, LabelLSTxls, f,
                      FigureLabels)
         if pc123 == 1:
-            HRmin = Hmin
-            HRmax = Hmax
-        printHST(Reconstruct, 'RLST', HRmin, HRmax, LabelLSTxls, f,
-                 FigureLabels)
+            printHST(Reconstruct, 'RLST', Hmin, Hmax, LabelLSTxls, f,
+                     FigureLabels)
+        else:
+            printHST(Reconstruct, 'RLST', HRmin, HRmax, LabelLSTxls, f,
+                     FigureLabels)
     Cluster_yesno = input_screen_str_yn('Cluster R(data) ? ')
     if Cluster_yesno == 'Y' or Cluster_yesno == 'y':
         if Clustering_method in clustering_options:
