@@ -3,7 +3,7 @@
 Created on  20th of December, 2017
 
 @author: gmiliar (George Ch. Miliaresis)
-Dimensonality reduction for DEMs (SVR.DEM reduction) by G.Ch. Miliaresis
+Dimensonality reduction for DEMs (SVR.DEM) by G.Ch. Miliaresis
 Ver. 2017.02 winpython implementation, (https://winpython.github.io/)
 Details in https://github.com/miliaresis
            https://sites.google.com/site/miliaresisg/
@@ -12,52 +12,35 @@ import numpy as np
 
 
 def program_constants():
-    """ program constants (you might increase them according to your needs)
-    maxC = Maximum number of clusters
-    maxNBG =  Maximum number of NBG refinements """
+    """ program constants:
+            maxC = Maximum number of clusters
+            maxNBG =  Maximum number of NBG refinements """
     maxC = 100
-    maxNBG = 250
+    maxNBG = 500
     return maxC, maxNBG
 
 
 def Processing_constants():
-    """ Alternative clustering & tif import options.
-            There are various options for TIFF import. The methods included are
-        available in the default library available in WinPython. See function
-        tiff_to_np in dim_myf for the specific calls.
-        If    PIL  then Image from PIL is used
-              SKITimage  then skimage.io is used
-        The problems encountered has to do with the files format. For example
-             Some libraries "do not like"" the 1 bit or even 1/2 bytes
-             integers MASK image. Some others library "do not like" many
-             bytes per pixel, or even signed real values (FLOAT).
-        THE PROBLEM is solved with SKIimage.io that allows float tif matrix
-        import but all the files should include matrices (pixels) that are of
-        FLOAT type. This is valid even for the mask image that is actually a
-        0/1 matrix. If your mask image pixel depth is 1-bit, or 1 byte or 2
-        byte integers instead of float, data files will not be imported if you
-        use SKIimage.io.
-        CLUSTERING - CLASSIFICATION OPTIONS:
-        These are the clustering options:
-            Kmeans -> K-means clustering
-            Kmeans clustering refined by Naive Bayes Gaussian classification
-            etc., etc.
+    """ TIF import options (in function tiff_to_np in dim_myf)
+              if PIL  then Image from PIL is used
+              if SKITimage  then skimage.io is used
+        CLUSTERING & CLASSIFICATION OPTIONS:
+              K-means clustering
+              K-means clustering refined by Naive Bayes Gaussian classification
     """
     print('__________________________________________________________________')
     print('\n --- DEM SVR by G. Ch. Miliaresis ---\n')
     tiff_import_options = ['PIL', 'SKITimage']
     clustering_options = ['Kmeans', 'Kmeans refined by NBG']
-    cluster_assessment = ['Inertia', 'BIC (GMM) scores']
     print('Processing options: \n  TIFF import options', tiff_import_options,
-          '\n  Clustering options', clustering_options, '\n  Cluster assess ',
-          cluster_assessment)
+          '\n  Clustering options', clustering_options, '\n ')
     print('__________________________________________________________________')
     print('\nDISPLAY ACTIVE DATA HEADER')
     return clustering_options, tiff_import_options
 
 
 def filenames_of_images(k):
-    """ Defines the filenames of images  MASK, 01, 02, 03    """
+    """ Defines the filenames of images  MASK, 01, 02, 03 """
     a = '0'
     Lfiles = ['MASK']
     for i in range(k):
@@ -71,8 +54,8 @@ def filenames_of_images(k):
 
 def findcreatenewpath():
     """ Creates a new (non exisiting) path within the data/script-path where
-    the output files are stored. The path name is .......\outX where X is
-    a number determined automatically by the this script
+    the output files are stored. The path name is ...\outX where X is
+    a number determined automatically by this script
     """
     import os
     oldpath = os.getcwd()
@@ -123,15 +106,14 @@ def dummyvar_fcheck():
     return imarray, rows, cols, continue1
 
 
-def data_imv_read(row, col, vectordfile, LfilesDIR, featuredimension, T):
-    """Main Data FILE (individual images or vector file read) """
+def data_imv_read(LfilesDIR, featuredimension, T):
+    """Main Data FILE (individual images read) """
     print('__________________________________________________________________')
     print('\nIMPORT/READ DATA FILES')
     Lfiles = filenames_of_images(featuredimension)
     LfilesEXTENSION = '.tif'
     print('\nFiles EXTENSION= ', LfilesEXTENSION, 'DIR: ', LfilesDIR, '\n')
     print('FILENAMES: ', Lfiles, ' (names are case sensitive)\n')
-#   print('            xxxxx: ', len(Lfiles))
     for i in range(len(Lfiles)):
         Lfiles[i] = LfilesDIR + "\\" + Lfiles[i] + LfilesEXTENSION
     data, row, col, continue1 = readimagetiff(Lfiles, T)
@@ -139,8 +121,7 @@ def data_imv_read(row, col, vectordfile, LfilesDIR, featuredimension, T):
 
 
 def tiff_to_np(filename, T):
-    """Read/Import tiff file - various options are tested """
-    # option 1
+    """Read/Import tiff file """
     if T == 'PIL':
         from PIL import Image
         img = Image.open(filename)
@@ -153,7 +134,7 @@ def tiff_to_np(filename, T):
 
 
 def readdatafiles0(filename, continue1, T):
-    """Read SVR 2-d tif file &  convert it 1-d to numpy array """
+    """Read image 2-d tif file &  convert it 1-d to numpy array """
     import os.path
     if continue1 == 'yes':
         if os.path.isfile(filename):
@@ -194,7 +175,7 @@ def readdatafiles(filename, rows1, cols1, continue1, T):
 
 
 def readimagetiff(Ldatafiles, T):
-    """"Read individual tiff images - convert data"""
+    """Read individual tiff images - convert data"""
     c1 = 'yes'
     img0, rows, cols, c1 = readdatafiles0(Ldatafiles[0], c1, T)
     img = np.zeros(shape=(img0.shape[0], len(Ldatafiles)))
@@ -224,8 +205,7 @@ def readimagetiff(Ldatafiles, T):
 
 
 def findpaths_data2csv(data):
-    """find-define newpath to store the outputs, change to newpath data dir &
-       Write vector data matrix to a csv file within the newpath dir """
+    """find newpath to store outputs, change to newpath data dir """
     newpath = findcreatenewpath()
     import os
     oldpath = os.getcwd()
@@ -236,12 +216,6 @@ def findpaths_data2csv(data):
                 Details in https://github.com/miliaresis [Repository SVR.DEM]
                 https://sites.google.com/site/miliaresisg/ \n""")
     f.write('\n      Output data files are stored to : ' + newpath + '\n')
-    wcsv = input_screen_str_yn('      Write vector data to csv, 4 decimals ? ')
-    if wcsv == 'Y' or wcsv == 'y':
-        newf = 'data.csv'
-        print('\n               Saved vector data (4 decimals) to:', newf)
-        f.write('\n WRITE/SAVE data (vector matrix 4 decimals) to:' + newf)
-        np.savetxt(newf, data, fmt='%.4f', delimiter=',')
     return f, oldpath
 
 
@@ -287,18 +261,6 @@ def covariance_matrix(LST2):
     """ Compoute variance-covariance matrix"""
     covmat = LST2.T.dot(LST2)/(LST2.shape[0]-1)
     return covmat
-
-
-def savepcamatrices_csv(evs_per, crosscorrelation, covmat, evs, evmat):
-    """ save PCA matrices to CSV files"""
-    print('         PC,    %   , eigenvalue')
-    for i in range(covmat.shape[1]):
-        print('        %2d : %6.3f , %7.3f ' % (i+1, evs_per[i], evs[i]))
-    np.savetxt('PCAcrosscor.csv', crosscorrelation, fmt='%.2f', delimiter=',')
-    np.savetxt('PCAeigenvalue_percent.csv', evs_per, fmt='%.3f', delimiter=',')
-    np.savetxt('PCAcovariance.csv', covmat, fmt='%.1f', delimiter=',')
-    np.savetxt('PCAeigenvalues.csv', evs, fmt='%.4f', delimiter=',')
-    np.savetxt('PCAeigenvector.csv', evmat, fmt='%.5f', delimiter=',')
 
 
 def sortdescent(evs, evmat):
@@ -385,13 +347,16 @@ def ImplementSVR_MG(data, Labelmonth1, f):
     f.write('\n    Compute eigenvalues & eigenvectors')
     xlspca(crosscorrelation, evmat, evs, evs_percent, Labelmonth1)
     f.write('\n    Write xlsx file: pca.xlsx')
+    pc1_or2_3 = 1
     xyxstr = 'reconstruct from PC1 (yes) else from PC2 & PC3 (no)? '
     Display_yesno2 = input_screen_str_yn(xyxstr)
+    if xyxstr in ['n', 'N']:
+        pc1_or2_3 = 2
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         Reconstruct = Reconstruct_matrix(evmat, LST)
     else:
         Reconstruct = Reconstruct_matrix2(evmat, LST)
-    return Reconstruct
+    return Reconstruct, pc1_or2_3
 
 
 def prnxls_confuse(workbook, data2):
@@ -666,28 +631,23 @@ def plotmatrix(c, xyrange, lut, name1, yesno, MDLabel):
 
 
 def savematrix2image(c, name1):
-    """save image to matlab, tif & csv files """
-    import scipy.io as sio
+    """save image to tif file """
     import scipy.misc
     print('SAVE CLUSTER IMAGE to:')
-    sio.savemat(name1+'.mat', {'labels': c})
-    print('   ', name1+'.mat')
     scipy.misc.toimage(c, high=np.max(c), low=np.min(c),
                        mode='I').save(name1 + '.tif')
     print('   ', name1 + '.tif', '(16 bit, in true [min, max])')
-    np.savetxt(name1+'_image.csv', c, fmt='%.0f', delimiter=',')
-    print('   ', name1 + '_image.csv')
 
 
 def display_save_maskimage(xyrange, c, MDLabel):
-    """covert vector cluster labels to image, plot &  save as csv, mat, tif """
+    """convert vector cluster labels to image, plot,  save as csv, mat, tif """
     mask = CreateMask_fromCluster(c)
     print('\nDisplay mask image')
     plotmatrix(mask, xyrange, 'hot', 'Mask', 'n', MDLabel)
 
 
 def display_save_clusterimage(rows, cols, xyrange, data, labels, f, w, MDLabe):
-    """covert vector cluster labels to image, plot &  save as csv, mat, tif """
+    """covert vector cluster labels to image, plot it & save to tif """
     ids = np.zeros(shape=(data.shape[0], 1))
     ids[:, 0] = data[:, 0]
     c = creatematrix(rows, cols, ids, labels)
@@ -700,14 +660,14 @@ def display_save_clusterimage(rows, cols, xyrange, data, labels, f, w, MDLabe):
 
 
 def display_RLST(rows, cols, xyrange, data, RLST, x, f, MDLabel):
-    """ display RLST images and save to png/tif files """
+    """ display Rdata images and save to png/tif files """
     import scipy.misc
     print('\nVisualize the R(data) images')
-    f.write('\n VISUALIZE & SAVE (png/tif/csv) the RLST images')
+    f.write('\n VISUALIZE & SAVE (png/tif) the Rdata images')
     ids = np.zeros(shape=(data.shape[0], 1))
     ids[:, 0] = data[:, 0]
     labels = np.zeros(shape=(data.shape[0], 1))
-    Display_yesno3 = input_screen_str_yn('Save RLST images to TIF & CSV ? ')
+    Display_yesno3 = input_screen_str_yn('Save Rdata images to TIF files? ')
     for i in range(0, RLST.shape[1]):
         labels[:, 0] = RLST[:, i]
         c = creatematrix(rows,  cols, ids, labels)
@@ -717,13 +677,12 @@ def display_RLST(rows, cols, xyrange, data, RLST, x, f, MDLabel):
         if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
             scipy.misc.toimage(c, high=np.max(c), low=np.min(c),
                                mode='I').save(RLSTname + '.tif')
-            np.savetxt(RLSTname + '.csv', c, fmt='%.4f', delimiter=',')
 
 
 def display_LST(rows, cols, xyrange, data, x, f, MDLabel):
-    """ display LST images and save to png/tiff files """
-    print('VISUALIZE & SAVE (png) the LST images')
-    f.write('\n   VISUALIZE & SAVE (png) the LST images')
+    """ display data images and save to png/tiff files """
+    print('VISUALIZE & SAVE (png) the data images')
+    f.write('\n   VISUALIZE & SAVE (png) the data images')
     ids, LST = create_data_files(data)
     labels = np.zeros(shape=(data.shape[0], 1))
     for i in range(0, LST.shape[1]):
@@ -748,10 +707,10 @@ def compute_descriptive_stats(RLST, x, lst_or_rlst):
     a[:, 5] = kurtosis(RLST, axis=0)
     y = ['Minimum', 'Maximum', 'Mean', 'St.Dev.', 'Skew', 'Kurtosis']
     if lst_or_rlst == 'RLST':
-        print('SAVE descriptive RLST stats to file: descriptives_RLST.xlsx')
+        print('SAVE descriptive Rdata stats to file: descriptives_RLST.xlsx')
         workbook = xlsxwriter.Workbook('_descriptives_RLST.xlsx')
     else:
-        print('SAVE descriptive LST stats to file: descriptives_LST.xlsx')
+        print('SAVE descriptive data stats to file: descriptives_LST.xlsx')
         workbook = xlsxwriter.Workbook('_descriptives_LST.xlsx')
     worksheet5 = workbook.add_worksheet()
     worksheet5.name = 'descriptives'
@@ -767,7 +726,7 @@ def compute_descriptive_stats(RLST, x, lst_or_rlst):
 
 
 def descriptive_stats_RLST(data, LABELmonths3, Lx, f, lst_or_rlst):
-    """Compute, display & save to xlsx descriptive statistics for RLST """
+    """Compute, display & save to xlsx descriptive statistics for Rdata """
     import matplotlib.pyplot as plt
     from scipy.stats import kurtosis
     from scipy.stats import skew
@@ -788,10 +747,10 @@ def descriptive_stats_RLST(data, LABELmonths3, Lx, f, lst_or_rlst):
     plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
     if lst_or_rlst == 'RLST':
         plt.savefig('RLST_abs_kurtosis_skew.png', dpi=300)
-        f.write('\n    Write RLST stats to descriptives_RLST.xlsx')
+        f.write('\n    Write Rdata stats to descriptives_RLST.xlsx')
     else:
         plt.savefig('LST_abs_kurtosis_skew.png', dpi=300)
-        f.write('\n    Write RLST stats to descriptives_LST.xlsx')
+        f.write('\n    Write Rdata stats to descriptives_LST.xlsx')
     plt.show(1)
     plt.close("all")
     f.write('\n    Save absolute kurtosis & skew to abs_kurtosis_skew.png')
@@ -840,7 +799,7 @@ def printHST(RLST, Fstring, xmin, xmax, x, f, MDLabel):
 
 
 def printRLST_correlation(data, x):
-    """ write RLST cross correlation matrix  to xls file"""
+    """ write Rdata cross correlation matrix  to xls file"""
     import xlsxwriter
     print('Create RLST_correlation.xlsx')
     workbook = xlsxwriter.Workbook('_RLST_correlation.xlsx')
@@ -855,31 +814,23 @@ def printRLST_correlation(data, x):
     workbook.close()
 
 
-def saveClusterLabels_to_vectors(f, Labels):
-    """Saves cluster membership as vectors to a csv file """
-    LV_yes_no = input_screen_str_yn('\n    Save Cluster Labels as vectors ? ')
-    if LV_yes_no == 'Y' or LV_yes_no == 'y':
-        print('\n    Saved clusters vector map to Labels.csv \n')
-        f.write('\n    Save cluster vector map to Labels.csv')
-        np.savetxt('Labels.csv', Labels, fmt='%.0f', delimiter=',')
-
-
 def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
             LabelLST, LabelLSTxls, Hmin, Hmax, HRmin, HRmax, Clustering_method,
             clustering_options):
     """ Main run module of SVR-mg.py"""
     f, oldpath = findpaths_data2csv(data)
     maxC, mNBG = program_constants()
-    xyxstr = 'LST:Stats, Correlation, NPPS, Images, Histograms ? '
+    xyxstr = 'Data:Stats, Correlation, NPPS, Images, Histograms ? '
     Display_yesno2 = input_screen_str_yn(xyxstr)
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
-        f.write('\n DISPLAY:descriptives, NPPs, LST images & histograms')
+        f.write('\n DISPLAY:descriptives, NPPs, images & histograms')
         data2 = data[:, 1:data.shape[1]]
         descriptive_stats_RLST(data2, LabelLSTxls, LabelLST, f, 'LST')
         display_LST(rows, cols, GeoExtent, data, LabelLSTxls, f, FigureLabels)
         printNPP(data2, LabelLSTxls, f, 'LST')
+        pc123 = 1
         printHST(data, 'LST', Hmin, Hmax, LabelLSTxls, f, FigureLabels)
-    Reconstruct = ImplementSVR_MG(data, LabelHLatLonLST, f)
+    Reconstruct, pc123 = ImplementSVR_MG(data, LabelHLatLonLST, f)
     Display_yesno3 = input_screen_str_yn(
         'R(data):Stats, Correlation, NPPS, Images, Histograms ? ')
     if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
@@ -887,6 +838,9 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
         printNPP(Reconstruct, LabelLSTxls, f, 'RLST')
         display_RLST(rows, cols, GeoExtent, data, Reconstruct, LabelLSTxls, f,
                      FigureLabels)
+        if pc123 == 1:
+            HRmin = Hmin
+            HRmax = Hmax
         printHST(Reconstruct, 'RLST', HRmin, HRmax, LabelLSTxls, f,
                  FigureLabels)
     Cluster_yesno = input_screen_str_yn('Cluster R(data) ? ')
@@ -899,7 +853,6 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
             if Clustering_method == clustering_options[0]:
                 Labels = clustering_Kmeans(Reconstruct, LabelLST, maxC, mNBG,
                                            f, FigureLabels, Clustering_method)
-            saveClusterLabels_to_vectors(f, Labels)
             display_save_clusterimage(rows, cols, GeoExtent, data, Labels, f,
                                       'Cluster', FigureLabels)
     f.close()
