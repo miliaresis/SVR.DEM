@@ -353,9 +353,13 @@ def ImplementSVR_MG(data, Labelmonth1, f):
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         Reconstruct = Reconstruct_matrix(evmat, LST)
         pc1_or2_3 = 1
+        f.write('\n ---> Reconstruct from PC1')
+        print('\n ---> Reconstruct from PC1')
     else:
         Reconstruct = Reconstruct_matrix2(evmat, LST)
         pc1_or2_3 = 2
+        f.write('\n ---> Reconstruct from PC2 & PC3')
+        print('\n ---> Reconstruct from PC2 & PC3')
     return Reconstruct, pc1_or2_3
 
 
