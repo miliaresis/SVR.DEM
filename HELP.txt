@@ -28,7 +28,6 @@ Labels for x-axis, y-axis of images/histograms:
 Geographic extent of data:  [54.2362, 54.681, 27.1107, 27.5555]
 AXES legends & Tables headers for rows  & columns 
     ['A', 'S', 'G'] 
-    ['A', 'S', 'G'] 
     ['ALOS', 'SRTM', 'ASTER']
 Domain of histograms, data:  301 2210  Rdata:  -25 25  m
 Subdir with images or vector files=  data
@@ -59,7 +58,7 @@ FUNCTIONS
     dataDEM2(clustering_options, tiff_import_options)
         ALOS, SRTM, ASTER GDEMs
     
-    phead(xy, ML, x, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm)
+    phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm)
         PRINT DATA HEADER.
          DATA files stored in a subdir named  data within the dir where the
          3 scripts are stored.
@@ -90,7 +89,7 @@ FUNCTIONS
     Kmeans_init(number_of_clusters)
         Kmeans initialization
     
-    MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST, LabelLST, LabelLSTxls, Hmin, Hmax, HRmin, HRmax, Clustering_method, clustering_options)
+    MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls, Hmin, Hmax, HRmin, HRmax, Clustering_method, clustering_options)
         Main run module of SVR-mg.py
     
     Processing_constants()
@@ -621,4 +620,4 @@ Save mean inertia convergence to file: convergence_NBG.xlsx
  NBG iterations:  300 output file: _clustering_output_tables.xlsx
    Centroids, Sigma, Divergence, Occurence, Confusion Matrix
      Confusion of KMEANS versus F I N A L  NBG
-         Reclassified 83.1381 percent ( 2130996 ) 
+         Reclassified by NBG 83.1381 percent ( 2130996 ) 
