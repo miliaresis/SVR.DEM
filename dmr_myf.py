@@ -347,7 +347,6 @@ def ImplementSVR_MG(data, Labelmonth1, f):
     f.write('\n    Compute eigenvalues & eigenvectors')
     xlspca(crosscorrelation, evmat, evs, evs_percent, Labelmonth1)
     f.write('\n    Write xlsx file: pca.xlsx')
-    pc1_or2_3 = 1
     xyxstr = 'reconstruct from PC1 (yes) else from PC2 & PC3 (no)? '
     Display_yesno2 = input_screen_str_yn(xyxstr)
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
@@ -803,7 +802,7 @@ def printHST(RLST, Fstring, xmin, xmax, x, f, MDLabel):
 
 
 def printRLST_correlation(data, x):
-    """ write Rdata cross correlation matrix  to xls file"""
+    """ write Rdata cross correlation matrix to xls file"""
     import xlsxwriter
     print('Create RLST_correlation.xlsx')
     workbook = xlsxwriter.Workbook('_RLST_correlation.xlsx')
@@ -818,6 +817,44 @@ def printRLST_correlation(data, x):
     workbook.close()
 
 
+def print_RMS(Reconstruct, x, filename2, f):
+    """ Compute/write elevation difference stats among DEM pairs to xls file"""
+    import xlsxwriter
+    print('SAVE DEM comparisons: ', filename2)
+    f.write('\n SAVE DEM to DEM comparisons:'+filename2)
+    data = np.zeros(shape=(Reconstruct.shape[1], Reconstruct.shape[1]))
+    data[1, 2] = (Reconstruct[:, 1] - Reconstruct[:, 2]).std()
+    data[2, 1] = data[1, 2]
+    data[0, 1] = (Reconstruct[:, 0] - Reconstruct[:, 1]).std()
+    data[1, 0] = data[0, 1]
+    data[0, 2] = (Reconstruct[:, 0] - Reconstruct[:, 2]).std()
+    data[2, 0] = data[0, 2]
+    workbook = xlsxwriter.Workbook(filename2)
+    worksheet1 = workbook.add_worksheet()
+    worksheet1.write(1, 0, 'stdev among differences among 2 DEMs')
+    worksheet1.name = 'stdev_of_dif'
+    for i in range(0, data.shape[0]):
+        worksheet1.write(1, i+2, x[i])
+        worksheet1.write(i+2, 1, x[i])
+        for j in range(0, data.shape[1]):
+            worksheet1.write(i+2, j+2, str(round(data[i, j], 4)))
+    data[1, 2] = np.absolute((Reconstruct[:, 1] - Reconstruct[:, 2])).mean()
+    data[2, 1] = data[1, 2]
+    data[0, 1] = np.absolute((Reconstruct[:, 0] - Reconstruct[:, 1])).mean()
+    data[1, 0] = data[0, 1]
+    data[0, 2] = np.absolute((Reconstruct[:, 0] - Reconstruct[:, 2])).mean()
+    data[2, 0] = data[0, 2]
+    worksheet2 = workbook.add_worksheet()
+    worksheet2.write(1, 0, 'mean bsolute difference among 2 DEMs')
+    worksheet2.name = 'abs_mean_dif'
+    for i in range(0, data.shape[0]):
+        worksheet2.write(1, i+2, x[i])
+        worksheet2.write(i+2, 1, x[i])
+        for j in range(0, data.shape[1]):
+            worksheet2.write(i+2, j+2, str(round(data[i, j], 4)))
+    workbook.close()
+
+
 def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
             Hmin, Hmax, HRmin, HRmax, Clustering_method,
             clustering_options):
@@ -829,12 +866,13 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         f.write('\n DISPLAY:descriptives, NPPs, images & histograms')
         data2 = data[:, 1:data.shape[1]]
+        print_RMS(data2, LabelLSTxls, '_initial_DEMS_DIF_stats.xlsx', f)
         descriptive_stats_RLST(data2, LabelLSTxls, LabelLST, f, 'LST')
         display_LST(rows, cols, GeoExtent, data, LabelLSTxls, f, FigureLabels)
         printNPP(data2, LabelLSTxls, f, 'LST')
-        pc123 = 1
         printHST(data, 'LST', Hmin, Hmax, LabelLSTxls, f, FigureLabels)
     Reconstruct, pc123 = ImplementSVR_MG(data, LabelLST, f)
+    print_RMS(Reconstruct, LabelLSTxls, '_Reconstruted_DEMS_DIF_stats.xlsx', f)
     Display_yesno3 = input_screen_str_yn(
         'R(data):Stats, Correlation, NPPS, Images, Histograms ? ')
     if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
