@@ -180,6 +180,9 @@ FUNCTIONS
     
     plotmatrix(c, xyrange, lut, name1, yesno, MDLabel)
         plot a matrix
+
+     print_RMS(Reconstruct, x, filename2, f):
+        Compute/write elevation difference stats among DEM pairs to xls file
     
     printHST(RLST, Fstring, xmin, xmax, x, f, MDLabel)
         print histogram of LST/RLST
@@ -189,7 +192,7 @@ FUNCTIONS
     
     printRLST_correlation(data, x)
         write Rdata cross correlation matrix  to xls file
-    
+   
     prn_xls_centroids(workbook, Centroids, LabelLST)
         write Centroids matrix to a sheet of an excel workbook
     
@@ -261,6 +264,7 @@ Dimensionality reduction-DEM Selective Variance Reduction by
       Output data files are stored to : D:\run_z\out10
 
  DISPLAY:descriptives, NPPs, images & histograms
+ SAVE DEM comparisons:  _initial_DEMS_DIF_stats.xlsx
  Compute, display descriptive statistics
     Write Rdata stats to descriptives_LST.xlsx
     Save absolute kurtosis & skew to abs_kurtosis_skew.png
@@ -281,6 +285,7 @@ SVR IMPLEMENTATION
     Compute eigenvalues & eigenvectors
     Write xlsx file: pca.xlsx
   ---> Reconstruct from PC2 & PC3
+ SAVE DEM comparisons:  _Reconstruted_DEMS_DIF_stats.xlsx
  Compute, display descriptive statistics
     Write Rdata stats to descriptives_RLST.xlsx
     Save absolute kurtosis & skew to abs_kurtosis_skew.png
