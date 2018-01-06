@@ -818,8 +818,8 @@ def printRLST_correlation(data, x):
     workbook.close()
 
 
-def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
-            LabelLST, LabelLSTxls, Hmin, Hmax, HRmin, HRmax, Clustering_method,
+def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
+            Hmin, Hmax, HRmin, HRmax, Clustering_method,
             clustering_options):
     """ Main run module of SVR-mg.py"""
     f, oldpath = findpaths_data2csv(data)
@@ -834,7 +834,7 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelHLatLonLST,
         printNPP(data2, LabelLSTxls, f, 'LST')
         pc123 = 1
         printHST(data, 'LST', Hmin, Hmax, LabelLSTxls, f, FigureLabels)
-    Reconstruct, pc123 = ImplementSVR_MG(data, LabelHLatLonLST, f)
+    Reconstruct, pc123 = ImplementSVR_MG(data, LabelLST, f)
     Display_yesno3 = input_screen_str_yn(
         'R(data):Stats, Correlation, NPPS, Images, Histograms ? ')
     if Display_yesno3 == 'Y' or Display_yesno3 == 'y':

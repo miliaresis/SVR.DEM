@@ -13,7 +13,7 @@ TO LOAD your data, define a header in the file svr_data_headers.py.
 """
 
 
-def phead(xy, ML, x, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
+def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
     """PRINT DATA HEADER.
         DATA files stored in a subdir named  data within the dir where the
         3 scripts are stored.
@@ -28,7 +28,7 @@ def phead(xy, ML, x, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
     print('Labels for x-axis, y-axis of images/histograms:\n        ', ML)
     print('Geographic extent of data: ', xy)
     print('AXES legends & Tables headers for rows  & columns',
-          '\n   ', x2, '\n   ', x, '\n   ', x3)
+          '\n   ', x2, '\n   ', x3)
     print('Domain of histograms, data: ', Lmn, Lmx, ' Rdata: ', Rmn, Rmx, ' m')
     print('Subdir with images or vector files= ', LDIR)
     print('Clustering method: ', cm)
@@ -45,7 +45,6 @@ def dataDEM2(clustering_options, tiff_import_options):
     xy = [54.2362, 54.6810, 27.1107, 27.5555]
 # tics for axes of figures and cross-correlation matrix
     x2 = ['A', 'S', 'G']
-    x = x2
     x3 = ['ALOS', 'SRTM', 'ASTER']
 # Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
     Lmin = 301
@@ -58,5 +57,5 @@ def dataDEM2(clustering_options, tiff_import_options):
     T = tiff_import_options[0]
 # Sub-directory for image files or vector matrix
     LDIR = 'data'
-    phead(xy, ML, x, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
-    return (xy, ML, x, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
