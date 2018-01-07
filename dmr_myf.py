@@ -759,6 +759,40 @@ def descriptive_stats_RLST(data, LABELmonths3, Lx, f, lst_or_rlst):
     f.write('\n    Save absolute kurtosis & skew to abs_kurtosis_skew.png')
 
 
+def dem_differences_stdev(R):
+    """ Compute st.dev of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = (R[:, i] - R[:, j]).std()
+                data[j, i] = data[i, j]
+    return data
+
+
+def dem_differences_absoulte_mean(R):
+    """ Compute absolute mean of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = np.absolute((R[:, i] - R[:, j])).mean()
+                data[j, i] = data[i, j]
+    return data
+
+
+def dem_differences_RMS(R):
+    """ Compute RMS of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = np.sqrt((R[:, i] - R[:, j]).T.dot(
+                        R[:, i] - R[:, j])/(R.shape[0]-1))
+                data[j, i] = data[i, j]
+    return data
+
+
 def printNPP(RLST, x, f, lst_or_rlst):
     """print normal propability plot """
     from scipy import stats
@@ -818,17 +852,11 @@ def printRLST_correlation(data, x):
 
 
 def print_RMS(Reconstruct, x, filename2, f):
-    """ Compute/write elevation difference stats among DEM pairs to xls file"""
+    """ Write elevation difference stats among DEM pairs to xls file"""
     import xlsxwriter
     print('SAVE DEM comparisons: ', filename2)
     f.write('\n SAVE DEM to DEM comparisons:'+filename2)
-    data = np.zeros(shape=(Reconstruct.shape[1], Reconstruct.shape[1]))
-    data[1, 2] = (Reconstruct[:, 1] - Reconstruct[:, 2]).std()
-    data[2, 1] = data[1, 2]
-    data[0, 1] = (Reconstruct[:, 0] - Reconstruct[:, 1]).std()
-    data[1, 0] = data[0, 1]
-    data[0, 2] = (Reconstruct[:, 0] - Reconstruct[:, 2]).std()
-    data[2, 0] = data[0, 2]
+    data = dem_differences_stdev(Reconstruct)
     workbook = xlsxwriter.Workbook(filename2)
     worksheet1 = workbook.add_worksheet()
     worksheet1.write(1, 0, 'stdev among differences among 2 DEMs')
@@ -838,12 +866,7 @@ def print_RMS(Reconstruct, x, filename2, f):
         worksheet1.write(i+2, 1, x[i])
         for j in range(0, data.shape[1]):
             worksheet1.write(i+2, j+2, str(round(data[i, j], 4)))
-    data[1, 2] = np.absolute((Reconstruct[:, 1] - Reconstruct[:, 2])).mean()
-    data[2, 1] = data[1, 2]
-    data[0, 1] = np.absolute((Reconstruct[:, 0] - Reconstruct[:, 1])).mean()
-    data[1, 0] = data[0, 1]
-    data[0, 2] = np.absolute((Reconstruct[:, 0] - Reconstruct[:, 2])).mean()
-    data[2, 0] = data[0, 2]
+    data = dem_differences_absoulte_mean(Reconstruct)
     worksheet2 = workbook.add_worksheet()
     worksheet2.write(1, 0, 'mean absolute difference among 2 DEMs')
     worksheet2.name = 'abs_mean_dif'
@@ -852,15 +875,7 @@ def print_RMS(Reconstruct, x, filename2, f):
         worksheet2.write(i+2, 1, x[i])
         for j in range(0, data.shape[1]):
             worksheet2.write(i+2, j+2, str(round(data[i, j], 4)))
-    data[1, 2] = np.sqrt((Reconstruct[:, 1] - Reconstruct[:, 2]).T.dot(
-            Reconstruct[:, 1] - Reconstruct[:, 2])/(Reconstruct.shape[0]-1))
-    data[0, 1] = np.sqrt((Reconstruct[:, 0] - Reconstruct[:, 1]).T.dot(
-            Reconstruct[:, 0] - Reconstruct[:, 1])/(Reconstruct.shape[0]-1))
-    data[0, 2] = np.sqrt((Reconstruct[:, 0] - Reconstruct[:, 2]).T.dot(
-            Reconstruct[:, 0] - Reconstruct[:, 2])/(Reconstruct.shape[0]-1))
-    data[2, 1] = data[1, 2]
-    data[1, 0] = data[0, 1]
-    data[2, 0] = data[0, 2]
+    data = dem_differences_RMS(Reconstruct)
     worksheet3 = workbook.add_worksheet()
     worksheet3.write(1, 0, 'RMSE among 2 DEMs')
     worksheet3.name = 'RMSE'
