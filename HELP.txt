@@ -11,7 +11,7 @@ DESCRIPTION
 CONTENTS:
  1. Processing options,  active data header ('dataDEM2') and data
  2. module: dmr_data_headers
- 3. moduleL dmr_myf
+ 3. module: dmr_myf
  4. History file (test run)
  5. Convergence (classification after k-means clustering) 
 _____________________________________________________________________
@@ -150,6 +150,9 @@ FUNCTIONS
     dem_differences_absoulte_mean(R)
         Compute absolute mean of elevation differences among DEM pairs
     
+    dem_differences_mean(R)
+        Compute mean of elevation differences among DEM pairs
+    
     dem_differences_stdev(R)
         Compute st.dev of elevation differences among DEM pairs
     
@@ -166,7 +169,7 @@ FUNCTIONS
         covert vector cluster labels to image, plot it & save to tif
     
     display_save_maskimage(xyrange, c, MDLabel)
-        convert vector cluster labels to image, plot,  save as csv, mat, tif
+        convert vector cluster labels to image, plot
     
     dummyvar_fcheck()
         assign dummy variables if file donot exist (to exit from return var
@@ -244,6 +247,9 @@ FUNCTIONS
     savematrix2image(c, name1)
         save image to tif file
     
+    savevector_to_CSV(c, name1, f)
+        save vector data (derived from input images) to CSV files
+    
     sortdescent(evs, evmat)
         sort eigenvalues-eigenvectors in descenting eigenvalue magnitude
     
@@ -264,7 +270,7 @@ FUNCTIONS
 
 FILE
     d:\run_z\dmr_myf.py
-_____________________________________________________________________
+______________________________________________________________
 44444444444444444444444444444444444444444444444444444444444444
 **************************************************************
 HISTORY FILE: Test RUN
@@ -280,6 +286,7 @@ Dimensionality reduction-DEM Selective Variance Reduction by
       Output data files are stored to : D:\run_z\out10
 
  DISPLAY:descriptives, NPPs, images & histograms
+ SAVE vector data to CSV file (1st col = mask ID): vectors.csv
  SAVE DEM comparisons:  _initial_DEMS_DIF_stats.xlsx
  Compute, display descriptive statistics
     Write Rdata stats to descriptives_LST.xlsx
