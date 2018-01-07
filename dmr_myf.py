@@ -726,8 +726,8 @@ def savevector_to_CSV(c, name1, f):
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         name1 = name1 + '.csv'
         np.savetxt(name1, c, fmt='%.1f', delimiter=',')
-        print('\n   SAVE vector data to CSV file (1st col = mask ID): ', name1)
-        f.write('\n  SAVE vector data to CSV file (1st col = mask ID): '+name1)
+        print('\nSAVE vector data to CSV file (1st col = mask ID): ', name1)
+        f.write('\n SAVE vector data to CSV file (1st col = mask ID): '+name1)
 
 
 def display_save_maskimage(xyrange, c, MDLabel):
