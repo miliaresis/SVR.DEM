@@ -309,6 +309,14 @@ SVR IMPLEMENTATION
 _____________________________________________________________________
 555555555555555555555555555555555555555555555555555555555555555555555
 *********************************************************************
+It might be non appropriate to fully reprocess / refine the K-means
+clustering results with NBG classification (for DEM residual 
+information interpretation. 
+So just consider the example below as a convergence case study. 
+The percent 83.1 % at end, compares the initial cluster 
+map (formed by K-means clustering) to the final classified map 
+(formed by the 300 refinements iterations).
+
 Convergence
 
    1st: K-means clustering 
