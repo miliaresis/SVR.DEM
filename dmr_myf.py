@@ -618,6 +618,83 @@ def CreateMask_fromCluster(c):
     return mask
 
 
+def dem_differences_stdev(R):
+    """ Compute st.dev of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = (R[:, i] - R[:, j]).std()
+                data[j, i] = data[i, j]
+    return data
+
+
+def dem_differences_absoulte_mean(R):
+    """ Compute absolute mean of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = np.absolute((R[:, i] - R[:, j])).mean()
+                data[j, i] = data[i, j]
+    return data
+
+
+def dem_differences_mean(R):
+    """ Compute mean of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = (R[:, i] - R[:, j]).mean()
+                data[j, i] = data[i, j]
+    return data
+
+
+def dem_differences_RMS(R):
+    """ Compute RMS of elevation differences among DEM pairs"""
+    data = np.zeros(shape=(R.shape[1], R.shape[1]))
+    for i in range(0, R.shape[1]-1):
+        for j in range(1, R.shape[1]):
+            if j > i:
+                data[i, j] = np.sqrt((R[:, i] - R[:, j]).T.dot(
+                        R[:, i] - R[:, j])/(R.shape[0]-1))
+                data[j, i] = data[i, j]
+    return data
+
+
+def compute_descriptive_stats(RLST, x, lst_or_rlst):
+    """compute mean, st.dev, kurtosis, skew"""
+    from scipy.stats import kurtosis
+    from scipy.stats import skew
+    import xlsxwriter
+    a = np.zeros(shape=(RLST.shape[1], 6))
+    a[:, 0] = RLST.min(axis=0)
+    a[:, 1] = RLST.max(axis=0)
+    a[:, 2] = RLST.mean(axis=0)
+    a[:, 3] = RLST.std(axis=0)
+    a[:, 4] = skew(RLST, axis=0)
+    a[:, 5] = kurtosis(RLST, axis=0)
+    y = ['Minimum', 'Maximum', 'Mean', 'St.Dev.', 'Skew', 'Kurtosis']
+    if lst_or_rlst == 'RLST':
+        print('SAVE descriptive Rdata stats to file: descriptives_RLST.xlsx')
+        workbook = xlsxwriter.Workbook('_descriptives_RLST.xlsx')
+    else:
+        print('SAVE descriptive data stats to file: descriptives_LST.xlsx')
+        workbook = xlsxwriter.Workbook('_descriptives_LST.xlsx')
+    worksheet5 = workbook.add_worksheet()
+    worksheet5.name = 'descriptives'
+    worksheet5.write(0, 0, 'descriptive stats')
+    for i in range(6):
+        worksheet5.write(1, i+1, y[i])
+    for i in range(len(x)):
+        worksheet5.write(i+2, 0, x[i])
+    for i in range(a.shape[1]):
+        for j in range(a.shape[0]):
+            worksheet5.write(j+2, i+1, str(a[j, i]))
+    workbook.close()
+
+
 def plotmatrix(c, xyrange, lut, name1, yesno, MDLabel):
     """plot a matrix """
     import matplotlib.pyplot as plt
@@ -642,8 +719,19 @@ def savematrix2image(c, name1):
     print('   ', name1 + '.tif', '(16 bit, in true [min, max])')
 
 
+def savevector_to_CSV(c, name1, f):
+    """save vector data (derived from input images) to CSV files """
+    xyxstr = 'Save the VECTOR DATA derived from images to a csv file ?'
+    Display_yesno2 = input_screen_str_yn(xyxstr)
+    if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
+        name1 = name1 + '.csv'
+        np.savetxt(name1, c, fmt='%.1f', delimiter=',')
+        print('\n   SAVE vector data to CSV file (1st col = mask ID): ', name1)
+        f.write('\n  SAVE vector data to CSV file (1st col = mask ID): '+name1)
+
+
 def display_save_maskimage(xyrange, c, MDLabel):
-    """convert vector cluster labels to image, plot,  save as csv, mat, tif """
+    """convert vector cluster labels to image, plot """
     mask = CreateMask_fromCluster(c)
     print('\nDisplay mask image')
     plotmatrix(mask, xyrange, 'hot', 'Mask', 'n', MDLabel)
@@ -696,38 +784,6 @@ def display_LST(rows, cols, xyrange, data, x, f, MDLabel):
         plotmatrix(c, xyrange, 'Greys', RLSTname, 'y', MDLabel)
 
 
-def compute_descriptive_stats(RLST, x, lst_or_rlst):
-    """compute mean, st.dev, kurtosis, skew"""
-    from scipy.stats import kurtosis
-    from scipy.stats import skew
-    import xlsxwriter
-    a = np.zeros(shape=(RLST.shape[1], 6))
-    a[:, 0] = RLST.min(axis=0)
-    a[:, 1] = RLST.max(axis=0)
-    a[:, 2] = RLST.mean(axis=0)
-    a[:, 3] = RLST.std(axis=0)
-    a[:, 4] = skew(RLST, axis=0)
-    a[:, 5] = kurtosis(RLST, axis=0)
-    y = ['Minimum', 'Maximum', 'Mean', 'St.Dev.', 'Skew', 'Kurtosis']
-    if lst_or_rlst == 'RLST':
-        print('SAVE descriptive Rdata stats to file: descriptives_RLST.xlsx')
-        workbook = xlsxwriter.Workbook('_descriptives_RLST.xlsx')
-    else:
-        print('SAVE descriptive data stats to file: descriptives_LST.xlsx')
-        workbook = xlsxwriter.Workbook('_descriptives_LST.xlsx')
-    worksheet5 = workbook.add_worksheet()
-    worksheet5.name = 'descriptives'
-    worksheet5.write(0, 0, 'descriptive stats')
-    for i in range(6):
-        worksheet5.write(1, i+1, y[i])
-    for i in range(len(x)):
-        worksheet5.write(i+2, 0, x[i])
-    for i in range(a.shape[1]):
-        for j in range(a.shape[0]):
-            worksheet5.write(j+2, i+1, str(a[j, i]))
-    workbook.close()
-
-
 def descriptive_stats_RLST(data, LABELmonths3, Lx, f, lst_or_rlst):
     """Compute, display & save to xlsx descriptive statistics for Rdata """
     import matplotlib.pyplot as plt
@@ -757,40 +813,6 @@ def descriptive_stats_RLST(data, LABELmonths3, Lx, f, lst_or_rlst):
     plt.show(1)
     plt.close("all")
     f.write('\n    Save absolute kurtosis & skew to abs_kurtosis_skew.png')
-
-
-def dem_differences_stdev(R):
-    """ Compute st.dev of elevation differences among DEM pairs"""
-    data = np.zeros(shape=(R.shape[1], R.shape[1]))
-    for i in range(0, R.shape[1]-1):
-        for j in range(1, R.shape[1]):
-            if j > i:
-                data[i, j] = (R[:, i] - R[:, j]).std()
-                data[j, i] = data[i, j]
-    return data
-
-
-def dem_differences_absoulte_mean(R):
-    """ Compute absolute mean of elevation differences among DEM pairs"""
-    data = np.zeros(shape=(R.shape[1], R.shape[1]))
-    for i in range(0, R.shape[1]-1):
-        for j in range(1, R.shape[1]):
-            if j > i:
-                data[i, j] = np.absolute((R[:, i] - R[:, j])).mean()
-                data[j, i] = data[i, j]
-    return data
-
-
-def dem_differences_RMS(R):
-    """ Compute RMS of elevation differences among DEM pairs"""
-    data = np.zeros(shape=(R.shape[1], R.shape[1]))
-    for i in range(0, R.shape[1]-1):
-        for j in range(1, R.shape[1]):
-            if j > i:
-                data[i, j] = np.sqrt((R[:, i] - R[:, j]).T.dot(
-                        R[:, i] - R[:, j])/(R.shape[0]-1))
-                data[j, i] = data[i, j]
-    return data
 
 
 def printNPP(RLST, x, f, lst_or_rlst):
@@ -884,6 +906,15 @@ def print_RMS(Reconstruct, x, filename2, f):
         worksheet3.write(i+2, 1, x[i])
         for j in range(0, data.shape[1]):
             worksheet3.write(i+2, j+2, str(round(data[i, j], 4)))
+    data = dem_differences_mean(Reconstruct)
+    worksheet4 = workbook.add_worksheet()
+    worksheet4.write(1, 0, 'Mean among 2 DEMs')
+    worksheet4.name = 'Mean_dif'
+    for i in range(0, data.shape[0]):
+        worksheet4.write(1, i+2, x[i])
+        worksheet4.write(i+2, 1, x[i])
+        for j in range(0, data.shape[1]):
+            worksheet4.write(i+2, j+2, str(round(data[i, j], 4)))
     workbook.close()
 
 
@@ -898,6 +929,7 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         f.write('\n DISPLAY:descriptives, NPPs, images & histograms')
         data2 = data[:, 1:data.shape[1]]
+        savevector_to_CSV(data, 'vectors', f)
         print_RMS(data2, LabelLSTxls, '_initial_DEMS_DIF_stats.xlsx', f)
         descriptive_stats_RLST(data2, LabelLSTxls, LabelLST, f, 'LST')
         display_LST(rows, cols, GeoExtent, data, LabelLSTxls, f, FigureLabels)
