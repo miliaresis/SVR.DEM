@@ -79,6 +79,13 @@ Help on module dmr_myf:
 NAME
     dmr_myf - Created on  20th of December, 2017
 
+DESCRIPTION
+    @author: gmiliar (George Ch. Miliaresis)
+    Dimensonality reduction for DEMs (SVR.DEM) by G.Ch. Miliaresis
+    Ver. 2017.02 winpython implementation, (https://winpython.github.io/)
+    Details in https://github.com/miliaresis
+               https://sites.google.com/site/miliaresisg/
+
 FUNCTIONS
     CreateMask_fromCluster(c)
         Create mask matrix from cluster image matrix
@@ -137,6 +144,15 @@ FUNCTIONS
     data_imv_read(LfilesDIR, featuredimension, T)
         Main Data FILE (individual images read)
     
+    dem_differences_RMS(R)
+        Compute RMS of elevation differences among DEM pairs
+    
+    dem_differences_absoulte_mean(R)
+        Compute absolute mean of elevation differences among DEM pairs
+    
+    dem_differences_stdev(R)
+        Compute st.dev of elevation differences among DEM pairs
+    
     descriptive_stats_RLST(data, LABELmonths3, Lx, f, lst_or_rlst)
         Compute, display & save to xlsx descriptive statistics for Rdata
     
@@ -180,9 +196,6 @@ FUNCTIONS
     
     plotmatrix(c, xyrange, lut, name1, yesno, MDLabel)
         plot a matrix
-
-     print_RMS(Reconstruct, x, filename2, f):
-        Compute/write elevation difference stats among DEM pairs to xls file
     
     printHST(RLST, Fstring, xmin, xmax, x, f, MDLabel)
         print histogram of LST/RLST
@@ -191,8 +204,11 @@ FUNCTIONS
         print normal propability plot
     
     printRLST_correlation(data, x)
-        write Rdata cross correlation matrix  to xls file
-   
+        write Rdata cross correlation matrix to xls file
+    
+    print_RMS(Reconstruct, x, filename2, f)
+        Write elevation difference stats among DEM pairs to xls file
+    
     prn_xls_centroids(workbook, Centroids, LabelLST)
         write Centroids matrix to a sheet of an excel workbook
     
@@ -311,11 +327,11 @@ _____________________________________________________________________
 *********************************************************************
 It might be non appropriate to fully reprocess / refine the K-means
 clustering results with NBG classification (for DEM residual 
-information interpretation. 
+information interpretation). 
 So just consider the example below as a convergence case study. 
 The percent 83.1 % at end, compares the initial cluster 
 map (formed by K-means clustering) to the final classified map 
-(formed by the 300 refinements iterations).
+(formed by the 300 refinement iterations).
 
 Convergence
 
