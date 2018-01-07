@@ -924,7 +924,7 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
     """ Main run module of SVR-mg.py"""
     f, oldpath = findpaths_data2csv(data)
     maxC, mNBG = program_constants()
-    xyxstr = 'Data:Stats, Correlation, NPPS, Images, Histograms ? '
+    xyxstr = 'Visualize / model / statisticss of input Data ? '
     Display_yesno2 = input_screen_str_yn(xyxstr)
     if Display_yesno2 == 'Y' or Display_yesno2 == 'y':
         f.write('\n DISPLAY:descriptives, NPPs, images & histograms')
