@@ -4,6 +4,7 @@
 * A YouTube video is available at .........
 # Data
   Miliaresis G. 2018. DEMs optimization. Mendeley Data v1, http://dx.doi.org/10.17632/bd2cdf833m.1
+# Publications
 * **Used in publications**
   1. DEMs optimization (in review)
 ![Example of output images](https://github.com/miliaresis/SVR.DEM/blob/master/mapping.png)
