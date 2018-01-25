@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on  20th of December, 2017
+Created on  17th of Jan., 2018
 
 @author: gmiliar (George Ch. Miliaresis)
 Dimensonality reduction for DEMs (SVR.DEM) by G.Ch. Miliaresis

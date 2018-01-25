@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on  20th of December, 2017
+Created on  17th of Jan., 2018
 
 @author: gmiliar (George Ch. Miliaresis)
 Dimensonality reduction for DEMs (SVR.DEM) by G.Ch. Miliaresis
@@ -18,7 +18,7 @@ import dmr_data_headers
 clustering_options, tiff_import_options = Processing_constants()
 #  2nd FUNCTION CALL ---------------Selects the data file (header) to work with
 [GeoExtent, FigureLabels, LabelLST, LabelLSTxls, Lmin, Lmax, Rmin, Rmax,
- LDatadir, Tiffimporttype, cluster_method] = dmr_data_headers.dataDEM2(
+ LDatadir, Tiffimporttype, cluster_method] = dmr_data_headers.dataDEM1(
  clustering_options, tiff_import_options)
 #  3rd FUNCTION CALL -------------- IMPORTS the data files, creates the vectors
 data, row, col, continue1 = data_imv_read(LDatadir, len(LabelLST),

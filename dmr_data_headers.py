@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on  20th of December, 2017
+Created on  17th of Jan., 2018
 
 @author: gmiliar (George Ch. Miliaresis)
 Dimensonality reduction for DEMs (SVR.DEM) by G.Ch. Miliaresis
@@ -24,7 +24,7 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
          the feature space -> length of tics list), so you should preserve them
          in your data dir.
     """
-    Headers_ALL = ['dataDEM2']
+    Headers_ALL = ['dataDEM2', 'dataDEM1']
     print('Labels for x-axis, y-axis of images/histograms:\n        ', ML)
     print('Geographic extent of data: ', xy)
     print('AXES legends & Tables headers for rows  & columns',
@@ -57,5 +57,30 @@ def dataDEM2(clustering_options, tiff_import_options):
     T = tiff_import_options[0]
 # Sub-directory for image files or vector matrix
     LDIR = 'data'
+    phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+
+
+def dataDEM1(clustering_options, tiff_import_options):
+    """ALOS, SRTM, ASTER, NED GDEMs """
+    print('\n---> ALOS, SRTM, ASTER, NED GDEMs, 1 arcsec, Lat/Lon,WGS84,EGM96')
+# Main figure labels (title, x-axis, y-axis)
+    ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
+    # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
+    xy = [-117.2068, -116.7065, 36.0866, 36.5869]
+# tics for axes of figures and cross-correlation matrix
+    x2 = ['A', 'S', 'G', 'N']
+    x3 = ['ALOS', 'SRTM', 'ASTER', 'NED']
+# Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
+    Lmin = -156
+    Lmax = 2500
+    Rmin = -25
+    Rmax = 25
+# clustering method: Kmeans refined by NBG
+    clustermethod = clustering_options[1]
+# PIL Library is used for TIF file import
+    T = tiff_import_options[0]
+# Sub-directory for image files or vector matrix
+    LDIR = 'data2'
     phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
     return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
