@@ -36,8 +36,8 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
     print('\nData headers available: ', Headers_ALL)
 
 
-def dataDEM2(clustering_options, tiff_import_options):
-    """ALOS, SRTM, ASTER GDEMs """
+def dataDEM1(clustering_options, tiff_import_options):
+    """ALOS, SRTM, ASTER GDEMs (3 DEMS)"""
     print('\n---> ALOS, SRTM, ASTER GDEMs, 1 arc sec, Lat/Lon, WGS84, EGM96')
 # Main figure labels (title, x-axis, y-axis)
     ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
@@ -61,8 +61,8 @@ def dataDEM2(clustering_options, tiff_import_options):
     return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
 
 
-def dataDEM1(clustering_options, tiff_import_options):
-    """ALOS, SRTM, ASTER, NED GDEMs """
+def dataDEM2(clustering_options, tiff_import_options):
+    """ALOS, SRTM, ASTER, NED GDEMs (4 DEMs) """
     print('\n---> ALOS, SRTM, ASTER, NED GDEMs, 1 arcsec, Lat/Lon,WGS84,EGM96')
 # Main figure labels (title, x-axis, y-axis)
     ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
