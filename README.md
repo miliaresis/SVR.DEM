@@ -1,7 +1,7 @@
 # SVR.DEM
 **Dimension reduction of multi-dimentional elevation data for DEMs optimization**
 * A win python program (https://winpython.github.io/) consiting of 3 modules **dmr_mg.py** and the 2 library MODULEs **dmr_data_headers**, & **dmr_myf.py**.
-* A YouTube video is available at .........
+* A YouTube video is available at https://vimeo.com/253018987
 # Data
   Miliaresis G. 2018. DEMs optimization. Mendeley Data v1, http://dx.doi.org/10.17632/bd2cdf833m.1
 # Publications
