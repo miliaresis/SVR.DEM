@@ -24,7 +24,7 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
          the feature space -> length of tics list), so you should preserve them
          in your data dir.
     """
-    Headers_ALL = ['dataDEM2', 'dataDEM1']
+    Headers_ALL = ['dataDEM2', 'dataDEM1', 'dataDEM3']
     print('Labels for x-axis, y-axis of images/histograms:\n        ', ML)
     print('Geographic extent of data: ', xy)
     print('AXES legends & Tables headers for rows  & columns',
@@ -37,7 +37,7 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
 
 
 def dataDEM1(clustering_options, tiff_import_options):
-    """ALOS, SRTM, ASTER GDEMs (3 DEMS)"""
+    """ALOS, SRTM, ASTER GDEMs (3 DEMS), SE Zagros Ranges"""
     print('\n---> ALOS, SRTM, ASTER GDEMs, 1 arc sec, Lat/Lon, WGS84, EGM96')
 # Main figure labels (title, x-axis, y-axis)
     ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
@@ -82,5 +82,30 @@ def dataDEM2(clustering_options, tiff_import_options):
     T = tiff_import_options[0]
 # Sub-directory for image files or vector matrix
     LDIR = 'data2'
+    phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+
+
+def dataDEM3(clustering_options, tiff_import_options):
+    """ALOS(median,average), SRTM,ASTER DEMS, SE Zagros Ranges"""
+    print('\n---> ALOS, SRTM, ASTER GDEMs, 1 arc sec, Lat/Lon, WGS84, EGM96')
+# Main figure labels (title, x-axis, y-axis)
+    ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
+    # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
+    xy = [54.16158, 54.69491, 27.03999, 27.57332]
+# tics for axes of figures and cross-correlation matrix
+    x2 = ['A', 'S', 'G']
+    x3 = ['ALOS', 'SRTM', 'ASTER']
+# Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
+    Lmin = 205
+    Lmax = 2208
+    Rmin = -25
+    Rmax = 25
+# clustering method: Kmeans refined by NBG
+    clustermethod = clustering_options[1]
+# PIL Library is used for TIF file import
+    T = tiff_import_options[0]
+# Sub-directory for image files or vector matrix
+    LDIR = 'data3'
     phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
     return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
