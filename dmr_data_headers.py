@@ -117,7 +117,7 @@ def dataDEM4(clustering_options, tiff_import_options):
 # Main figure labels (title, x-axis, y-axis)
     ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
     # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
-    xy = [54.02167, 54.98225, 27.02163, 27.60522]
+    xy = [54.17698, 54.95448, 27.02163, 27.71580]
 # tics for axes of figures and cross-correlation matrix
     x2 = ['A', 'S', 'G']
     x3 = ['ALOS', 'SRTM', 'ASTER']

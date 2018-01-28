@@ -528,7 +528,7 @@ def clustering_Kmeans_by_NBG(data, ML2, maxC, maxNBG, f, MDLabel,
     print('\nClustering refined by NBG (display standardized mean divergence)')
     print('\n   1st: K-means clustering ')
     Nofclusters = input_screen_int('       Number of clusters', 2, maxC)
-    maxNBG = input_screen_int('       Number of NBG refinements', 5, maxNBG)
+    maxNBG = input_screen_int('       Number of NBG refinements', 2, maxNBG)
     clf = Kmeans_init(Nofclusters)
     X = clf.fit(data)
     Nofrefine = maxNBG
