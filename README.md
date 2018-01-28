@@ -5,6 +5,8 @@
 # Data
   * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges. Mendeley Data, v.1, http://dx.doi.org/10.17632/bd2cdf833m.1
   * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER ) DEM of SE Zagros Ranges. Mendeley Data, v.3, http://dx.doi.org/10.17632/cy6wzz5f76.3
+  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, enlarged study area, Mendeley Data, v4 
+http://dx.doi.org/10.17632/bswsr3gpy2.4
   * Multi-(4-d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.1, http://dx.doi.org/10.17632/fbd9pd6hnx.1.
 # Publications
 * **Used in publications**
