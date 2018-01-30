@@ -24,7 +24,7 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
          the feature space -> length of tics list), so you should preserve them
          in your data dir.
     """
-    Headers_ALL = ['dataDEM2', 'dataDEM1', 'dataDEM3', 'dataDEM4' ]
+    Headers_ALL = ['dataDEM2', 'dataDEM1', 'dataDEM3', 'dataDEM4']
     print('Labels for x-axis, y-axis of images/histograms:\n        ', ML)
     print('Geographic extent of data: ', xy)
     print('AXES legends & Tables headers for rows  & columns',
