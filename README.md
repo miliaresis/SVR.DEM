@@ -1,10 +1,10 @@
- # SVR.DEM
+# SVR.DEM
 **Dimension reduction of multi-dimentional elevation data for DEMs optimization**
 * A win python program (https://winpython.github.io/) consiting of 3 modules **dmr_mg.py** and the 2 library MODULEs **dmr_data_headers**, & **dmr_myf.py**.
 * A YouTube video is available at https://vimeo.com/253018987
 # Data
-  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, enlarged study area, Mendeley Data, v5 
-http://dx.doi.org/10.17632/bswsr3gpy2.5
+  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, enlarged study area, Mendeley Data, v6, 
+http://dx,doi.org/10.17632/bswsr3gpy2.6
   * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges. Mendeley Data, v.5, http:/dx.doi.org/10.17632/bd2cdf833m.5   
   * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER ) DEM of SE Zagros Ranges. Mendeley Data, v.3, http://dx.doi.org/10.17632/cy6wzz5f76.3
   * Multi-(4-d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.1, http://dx.doi.org/10.17632/fbd9pd6hnx.1.
