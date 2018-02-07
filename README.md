@@ -4,7 +4,7 @@
 * _2-d DEM optimization method presents an alternative to DEM comparison by elevation differences modeling. In it's general version (3.d, 4.d etc., etc.) is not limited to only 2 DEMs but can handle 3 DEMs, 4 DEMs etc. etc._
 * A YouTube video is available at https://vimeo.com/253018987
 # Data
-  * Multi-(2.d) dimensional (ALOS median & average DEMs) of SE Zagros Ranges. Mendeley Data,  v.3, _**http://dx.doi.org/10.17632/z4nxdjdyys.3**_ [_It is applied to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
+  * Multi-(2.d) dimensional (ALOS median & average) DEMs of SE Zagros Ranges. Mendeley Data,  v.3, _**http://dx.doi.org/10.17632/z4nxdjdyys.3**_ [_It is applied to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
  * Multi-(2.d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data,  v.3, _**http://dx.doi.org/10.17632/k9zpyh8c9k.3**_
   * Multi-(3-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.9, _**http://dx.doi.org/10.17632/bswsr3gpy2.9**_
   * Multi-(4.d) dimensional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, _**http://dx.doi.org/10.17632/fbd9pd6hnx.8**_ [_it tests the software performance with 4-d data only  since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ_]
