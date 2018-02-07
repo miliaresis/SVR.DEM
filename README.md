@@ -1,14 +1,13 @@
 # SVR.DEM
 **Dimension reduction of multi-dimentional elevation data for DEMs optimization**
 * A win python program (https://winpython.github.io/) consiting of 3 modules **dmr_mg.py** and the 2 library MODULEs **dmr_data_headers**, & **dmr_myf.py**.
+* _2-d DEM optimization method presents an alternative to DEM comparison by elevation differences modeling. In it's general version (3.d, 4.d etc., etc.) is not limited to only 2 DEMs but can handle 3 DEMs, 4 DEMs etc. etc._
 * A YouTube video is available at https://vimeo.com/253018987
 # Data
-  * Multi-(2.d) dimensional (ALOS median & average DEMs) of SE Zagros Ranges. Mendeley Data,  v.3, **http://dx.doi.org/10.17632/z4nxdjdyys.3** [_2-d optimization method present an alternative to  DEMs comparison by elevation differences modeling,that in it's general version is not limited to only 2 DEMs but can handle 3 DEMs, 4 DEMs etc. etc. It is applied to the largest study area (study area 4:data4)  of SE Zagros Ranges, to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
- * Multi-(2.d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data,  v.3, **http://dx.doi.org/10.17632/k9zpyh8c9k.3** [_2-d optimization present an alternative to  DEM comparison by elevation differences modeling, the largest study area (study area 4:data4)  of Zagros Ranges is used with improved DEM matching_]  
-  * Multi-(3.d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges. Mendeley Data, v.8, **http://dx.doi.org/10.17632/bd2cdf833m.8** [_the smallest study area, with the worst DEM matching (nearest neighbor)_]
-  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER ) DEM of SE Zagros Ranges. Mendeley Data, v.6, **http://dx.doi.org/10.17632/cy6wzz5f76.6** [_shifted study area for ALOS & SRTM centroid to present  different local maxima while the DEM matching is improved_]
-  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, **enlarged study area**, Mendeley Data,  v.9, **http://dx.doi.org/10.17632/bswsr3gpy2.9** [_the largest study area (study area 4)  of Zagros Ranges is used, with improved DEM matching_]
-  * Multi-(4.d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, **http://dx.doi.org/10.17632/fbd9pd6hnx.8** [_only tests the software performance with 4-d data since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ (improved DEM matching)_]
+  * Multi-(2.d) dimensional (ALOS median & average DEMs) of SE Zagros Ranges. Mendeley Data,  v.3, _**http://dx.doi.org/10.17632/z4nxdjdyys.3**_ [_It is applied to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
+ * Multi-(2.d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data,  v.3, _**http://dx.doi.org/10.17632/k9zpyh8c9k.3**_
+  * Multi-(3-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.9, _**http://dx.doi.org/10.17632/bswsr3gpy2.9**_
+  * Multi-(4.d) dimensional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, _**http://dx.doi.org/10.17632/fbd9pd6hnx.8**_ [_it tests the software performance with 4-d data only  since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ (improved DEM matching)_]
 # Publications
 * **Used in publications**
   1. DEMs optimization (in review)
