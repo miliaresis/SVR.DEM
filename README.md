@@ -4,10 +4,10 @@
 * A YouTube video is available at https://vimeo.com/253018987
 # Data
   * Multi-(2.d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data,  v.3, http://dx.doi.org/10.17632/k9zpyh8c9k.3 [2-d optimization present an alternative to  DEM comparison by elevation differences modeling, the largest study area (study area 4)  of Zagros Ranges is used with improved DEM matching]  
-  * Multi-(3.d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges. Mendeley Data, v.8, DOI:10.17632/bd2cdf833m.8  [the smallest study area, with the worst DEM matching (nearest neighbor)]
-  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER ) DEM of SE Zagros Ranges. Mendeley Data, v.6  DOI:10.17632/cy6wzz5f76.6 [shifted study area for ALOS & SRTM centroid to present  different local maxima while the DEM matching is improved]
+  * Multi-(3.d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges. Mendeley Data, v.8,  http://dx.doi.org/10.17632/bd2cdf833m.8  [the smallest study area, with the worst DEM matching (nearest neighbor)]
+  * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER ) DEM of SE Zagros Ranges. Mendeley Data, v.6,  http://dx.doi.org/10.17632/cy6wzz5f76.6 [shifted study area for ALOS & SRTM centroid to present  different local maxima while the DEM matching is improved]
   * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, **enlarged study area**, Mendeley Data,  v.9,  http://dx.doi.org/10.17632/bswsr3gpy2.9  [the largest study area (study area 4)  of Zagros Ranges is used with improved DEM matching]
-  * Multi-(4.d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, DOI:10.17632/fbd9pd6hnx.8 [only tests the software performance with 4-d data since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ]
+  * Multi-(4.d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8,  http://dx.doi.org/10.17632/fbd9pd6hnx.8 [only tests the software performance with 4-d data since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ]
 # Publications
 * **Used in publications**
   1. DEMs optimization (in review)
