@@ -1,4 +1,4 @@
-_ SVR.DEM
+# SVR.DEM
 **Dimension reduction of multi-dimentional elevation data for DEMs optimization**
 * A win python program (https://winpython.github.io/) consiting of 3 modules **dmr_mg.py** and the 2 library MODULEs **dmr_data_headers**, & **dmr_myf.py**.
 * A YouTube video is available at https://vimeo.com/253018987
@@ -7,7 +7,7 @@ _ SVR.DEM
   * Multi-(3.d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges. Mendeley Data, v.8, **http://dx.doi.org/10.17632/bd2cdf833m.8** [the smallest study area, with the worst DEM matching (nearest neighbor)_]
   * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER ) DEM of SE Zagros Ranges. Mendeley Data, v.6, **http://dx.doi.org/10.17632/cy6wzz5f76.6** [_shifted study area for ALOS & SRTM centroid to present  different local maxima while the DEM matching is improved_]
   * Multi-(3.5-d) dimensional (ALOS {median, average}, SRTM, ASTER) DEM of SE Zagros Ranges, **enlarged study area**, Mendeley Data,  v.9, **http://dx.doi.org/10.17632/bswsr3gpy2.9** [_the largest study area (study area 4)  of Zagros Ranges is used with improved DEM matching_]
-  * Multi-(4.d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, **http://dx.doi.org/10.17632/fbd9pd6hnx.8** [_only tests the software performance with 4-d data since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ_]
+  * Multi-(4.d) diminesional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, **http://dx.doi.org/10.17632/fbd9pd6hnx.8** [_only tests the software performance with 4-d data since vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ (improved DEM matching)_]
 # Publications
 * **Used in publications**
   1. DEMs optimization (in review)
