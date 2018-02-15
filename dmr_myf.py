@@ -399,10 +399,11 @@ def prn_xls_centroids(workbook, Centroids, LabelLST):
 
 
 def prn_xls_sigma(workbook, sigma, LabelLST):
-    """ write Sigma matrix to a sheet of an excel workbook"""
+    """ write compute stdev from Sigma (variance), write to excel workbook"""
     worksheet2 = workbook.add_worksheet()
-    worksheet2.name = 'Centroid_variance'
-    worksheet2.write(0, 0, 'Centroids variance')
+    worksheet2.name = 'Centroid_stdev'
+    worksheet2.write(0, 0, 'Centroids st.dev (sqrt of sigma)')
+    sigma = np.sqrt(sigma)
     for i in range(0, sigma.shape[1]):
         worksheet2.write(1, i+2, LabelLST[i])
         for j in range(0, sigma.shape[0]):
