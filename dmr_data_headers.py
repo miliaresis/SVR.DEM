@@ -52,8 +52,8 @@ def dataDEM1(clustering_options, tiff_import_options):
     Lmax = 2210
     Rmin = -25
     Rmax = 25
-# clustering method: Kmeans refined by NBG
-    clustermethod = clustering_options[1]
+# clustering method: Kmeans
+    clustermethod = clustering_options[0]
 # PIL Library is used for TIF file import
     T = tiff_import_options[0]
 # Sub-directory for image files or vector matrix

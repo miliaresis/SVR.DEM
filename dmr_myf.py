@@ -759,7 +759,7 @@ def display_RLST(rows, cols, xyrange, data, RLST, x, f, MDLabel):
     ids = np.zeros(shape=(data.shape[0], 1))
     ids[:, 0] = data[:, 0]
     labels = np.zeros(shape=(data.shape[0], 1))
-    Display_yesno3 = input_screen_str_yn('Save Rdata images to TIF files? ')
+    Display_yesno3 = input_screen_str_yn('   Save Rdata images to TIF files? ')
     for i in range(0, RLST.shape[1]):
         labels[:, 0] = RLST[:, i]
         c = creatematrix(rows,  cols, ids, labels)
@@ -768,7 +768,7 @@ def display_RLST(rows, cols, xyrange, data, RLST, x, f, MDLabel):
         plotmatrix(c, xyrange, 'Greys', RLSTname, 'y', MDLabel)
         if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
             scipy.misc.toimage(c, high=np.max(c), low=np.min(c),
-                               mode='I').save(RLSTname + '.tif')
+                               mode='F').save(RLSTname + '.tif')
 
 
 def display_LST(rows, cols, xyrange, data, x, f, MDLabel):
@@ -938,13 +938,13 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
         printHST(data, 'LST', Hmin, Hmax, LabelLSTxls, f, FigureLabels)
     Reconstruct, pc123 = ImplementSVR_MG(data, LabelLST, f)
     print_RMS(Reconstruct, LabelLSTxls, '_Reconstruted_DEMS_DIF_stats.xlsx', f)
+    display_RLST(rows, cols, GeoExtent, data, Reconstruct, LabelLSTxls, f,
+                 FigureLabels)
     Display_yesno3 = input_screen_str_yn(
-        'R(data):Stats, Correlation, NPPS, Images, Histograms ? ')
+        'R(data):display Stats, Correlation, NPPS, Histograms ? ')
     if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
         descriptive_stats_RLST(Reconstruct, LabelLSTxls, LabelLST, f, 'RLST')
         printNPP(Reconstruct, LabelLSTxls, f, 'RLST')
-        display_RLST(rows, cols, GeoExtent, data, Reconstruct, LabelLSTxls, f,
-                     FigureLabels)
         if pc123 == 1:
             printHST(Reconstruct, 'RLST', Hmin, Hmax, LabelLSTxls, f,
                      FigureLabels)
