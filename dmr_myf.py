@@ -731,13 +731,6 @@ def savevector_to_CSV(c, name1, f):
         f.write('\n SAVE vector data to CSV file (1st col = mask ID): '+name1)
 
 
-def display_save_maskimage(xyrange, c, MDLabel):
-    """convert vector cluster labels to image, plot """
-    mask = CreateMask_fromCluster(c)
-    print('\nDisplay mask image')
-    plotmatrix(mask, xyrange, 'hot', 'Mask', 'n', MDLabel)
-
-
 def display_save_clusterimage(rows, cols, xyrange, data, labels, f, w, MDLabe):
     """covert vector cluster labels to image, plot it & save to tif """
     ids = np.zeros(shape=(data.shape[0], 1))
@@ -747,8 +740,7 @@ def display_save_clusterimage(rows, cols, xyrange, data, labels, f, w, MDLabe):
     f.write('\n   VISUALIZE cluster image & save to Clusters.png')
     plotmatrix(c, xyrange, 'nipy_spectral', w, 'y', MDLabe)
     savematrix2image(c, 'Clustermap')
-    f.write('\n        Save to Clustermap.tif, & Clustermap.mat')
-    display_save_maskimage(xyrange, c, MDLabe)
+    f.write('\n        Save to Clustermap.tif')
 
 
 def display_RLST(rows, cols, xyrange, data, RLST, x, f, MDLabel):
@@ -759,16 +751,14 @@ def display_RLST(rows, cols, xyrange, data, RLST, x, f, MDLabel):
     ids = np.zeros(shape=(data.shape[0], 1))
     ids[:, 0] = data[:, 0]
     labels = np.zeros(shape=(data.shape[0], 1))
-    Display_yesno3 = input_screen_str_yn('   Save Rdata images to TIF files? ')
     for i in range(0, RLST.shape[1]):
         labels[:, 0] = RLST[:, i]
         c = creatematrix(rows,  cols, ids, labels)
         RLSTname = 'R' + str(i+1) + '_' + x[i]
         f.write('\n    ' + RLSTname)
         plotmatrix(c, xyrange, 'Greys', RLSTname, 'y', MDLabel)
-        if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
-            scipy.misc.toimage(c, high=np.max(c), low=np.min(c),
-                               mode='F').save(RLSTname + '.tif')
+        scipy.misc.toimage(c, high=np.max(c), low=np.min(c),
+                           mode='F').save(RLSTname + '.tif')
 
 
 def display_LST(rows, cols, xyrange, data, x, f, MDLabel):
@@ -938,8 +928,10 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
         printHST(data, 'LST', Hmin, Hmax, LabelLSTxls, f, FigureLabels)
     Reconstruct, pc123 = ImplementSVR_MG(data, LabelLST, f)
     print_RMS(Reconstruct, LabelLSTxls, '_Reconstruted_DEMS_DIF_stats.xlsx', f)
-    display_RLST(rows, cols, GeoExtent, data, Reconstruct, LabelLSTxls, f,
-                 FigureLabels)
+    Display_yesno3 = input_screen_str_yn('   Visualize & Save Rdata to TIFs ?')
+    if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
+        display_RLST(rows, cols, GeoExtent, data, Reconstruct, LabelLSTxls, f,
+                     FigureLabels)
     Display_yesno3 = input_screen_str_yn(
         'R(data):display Stats, Correlation, NPPS, Histograms ? ')
     if Display_yesno3 == 'Y' or Display_yesno3 == 'y':
@@ -963,6 +955,7 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
                                            f, FigureLabels, Clustering_method)
             display_save_clusterimage(rows, cols, GeoExtent, data, Labels, f,
                                       'Cluster', FigureLabels)
+#            cluster_statistics(Reconstruct, Labels)
     f.close()
     from os import chdir
     chdir(oldpath)
