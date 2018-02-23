@@ -909,83 +909,6 @@ def print_RMS(Reconstruct, x, filename2, f):
     workbook.close()
 
 
-def scatter_2d_plots(data2, LL, c_id, f):
-    """ Display 2d scatter plots """
-    import matplotlib.pyplot as plt
-    k = data2.shape[1]
-    for i in range(k):
-        for l in range(k):
-            if i > l:
-                title = "cluster_" + str(c_id+1) + "_" + LL[i] + "_" + LL[l]
-                plt.figure()
-                plt.title("cluster: " + str(c_id+1))
-                plt.scatter(data2[:, i], data2[:, l], 1, marker="+")
-                plt.xlabel(LL[i])
-                plt.ylabel(LL[l])
-                plt.savefig(title + '.png', dpi=300)
-                plt.show()
-                plt.close("all")
-
-
-def define_cluster_matrices(data, k, f):
-    """create cluster sub-matrices, k= the specific cluster id """
-    cluster_elements = 0
-    for i in range(data.shape[0]):
-        if data[i, 0] == k:
-            cluster_elements = cluster_elements + 1
-    file_xxx = '_descriptive' + str(k+1) + '.xlsx'
-    f.write('\n' + file_xxx + ' pixels: ' + str(cluster_elements))
-    cluster_matrix = np.zeros(shape=(cluster_elements+1, data.shape[1]))
-    m = -1
-    for i in range(data.shape[0]):
-        if data[i, 0] == k:
-            m = m + 1
-            for l in range(1, data.shape[1]):
-                cluster_matrix[m, l] = data[i, l]
-    return cluster_matrix
-
-
-def compute_descriptive_stats2(RLST, x, cluster_id):
-    """compute mean, st.dev, kurtosis, skew"""
-    from scipy.stats import kurtosis
-    from scipy.stats import skew
-    import xlsxwriter
-    a = np.zeros(shape=(RLST.shape[1], 4))
-    a[:, 0] = RLST.min(axis=0)
-    a[:, 1] = RLST.max(axis=0)
-    a[:, 2] = skew(RLST, axis=0)
-    a[:, 3] = kurtosis(RLST, axis=0)
-    y = ['Minimum', 'Maximum', 'Skew', 'Kurtosis']
-    file_xxx = '_descriptive' + str(cluster_id+1) + '.xlsx'
-    workbook = xlsxwriter.Workbook(file_xxx)
-    worksheet5 = workbook.add_worksheet()
-    worksheet5.name = 'descriptives'
-    worksheet5.write(0, 0, 'descriptive stats')
-    for i in range(4):
-        worksheet5.write(1, i+1, y[i])
-    for i in range(len(x)):
-        worksheet5.write(i+2, 0, x[i])
-    for i in range(a.shape[1]):
-        for j in range(a.shape[0]):
-            worksheet5.write(j+2, i+1, str(a[j, i]))
-    workbook.close()
-
-
-def cluster_statistics(RLST, Labels, LABELmonths3, f):
-    """ Clusters statistics"""
-    print('\n Compute descriptive stats per cluster & cluster feature space')
-    f.write('\n Compute descriptive stats per cluster & cluster feature space')
-    data = np.zeros(shape=(RLST.shape[0], RLST.shape[1]+1))
-    data[:, 0] = Labels
-    data[:, 1:data.shape[1]] = RLST
-    No_of_clusters = 1 + Labels.max(axis=0)
-    for cluster_id in range(int(No_of_clusters)):
-        datacluster = define_cluster_matrices(data, cluster_id, f)
-        data2 = datacluster[:, 1:datacluster.shape[1]]
-        compute_descriptive_stats2(data2, LABELmonths3, cluster_id)
-        scatter_2d_plots(data2, LABELmonths3, cluster_id, f)
-
-
 def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
             Hmin, Hmax, HRmin, HRmax, Clustering_method, clustering_options):
     """ Main run module of SVR-mg.py"""
@@ -1031,7 +954,6 @@ def MainRun(data, rows, cols, GeoExtent, FigureLabels, LabelLST, LabelLSTxls,
                                            f, FigureLabels, Clustering_method)
             display_save_clusterimage(rows, cols, GeoExtent, data, Labels, f,
                                       'Cluster', FigureLabels)
-            cluster_statistics(Reconstruct, Labels, LabelLSTxls, f)
     f.close()
     from os import chdir
     chdir(oldpath)
