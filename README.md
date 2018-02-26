@@ -6,7 +6,7 @@
 # Data
   * Multi-(2-d) dimensional (ALOS median & average) DEMs of SE Zagros Ranges. Mendeley Data,  v.3, _**http://dx.doi.org/10.17632/z4nxdjdyys.2**_ [_It is applied to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
  * Multi-(2-d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data, v.3, _**http://dx.doi.org/10.17632/k9zpyh8c9k.3**_
-  * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.11, _**http://dx.doi.org/10.17632/bswsr3gpy2.11**_
+  * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.12, _**http://dx.doi.org/10.17632/bswsr3gpy2.12**_
   * Multi-(4-d) dimensional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.8, _**http://dx.doi.org/10.17632/fbd9pd6hnx.8**_ [_it tests the software performance with 4-d data only, (the vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ)_]
 # Publications
 * **Used in publications**
