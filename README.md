@@ -16,7 +16,7 @@
 | 6         	| -0.3 	| -0.3 	| 0.7   	| 0.8     	| 0.7     	| 1.5     	| 1076842    	| 15.4       	|
 | 7         	| 8.4  	| 7.6  	| -15.9 	| 1.5     	| 1.3     	| 2.8     	| 986008     	| 14.1       	|
 
-* Data
+* **Data**
   * Multi-(2-d) dimensional (ALOS median & average) DEMs of SE Zagros Ranges. Mendeley Data,  v.4, _**http://dx.doi.org/10.17632/z4nxdjdyys.4**_ [_It is applied to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
   * Multi-(2-d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data, v.5, _**http://dx.doi.org/10.17632/k9zpyh8c9k.5**_
   * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.15, _**http://dx.doi.org/10.17632/bswsr3gpy2.15**_
