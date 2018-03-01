@@ -6,7 +6,7 @@
 # Table 1: Cluster centroids 
 (also see SVR.Clusters https://github.com/miliaresis/SVR.CLUSTERS for min/max statistices and feature space visualization before you derive any conclusions)
 
-| Clusters  	| Mean 	|      	|       	| st.dev. 	|         	|         	| Occurrence 	|            	|
+| Clusters  	| Mean 	       	|       	| st.dev. 	|         	|         	| Occurrence 	|            	|
 |-----------	|------	|------	|-------	|---------	|---------	|---------	|------------	|------------	|
 | Centroids 	| ALOS 	| SRTM 	| ASTER 	| ALOS    	| SRTM    	| ASTER   	| pixels     	| %          	|
 | 1         	| 1.9  	| 1.7  	| -3.5  	| 0.5     	| 0.5     	| 1       	| 1102976    	| 15.8       	|
