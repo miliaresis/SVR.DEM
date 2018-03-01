@@ -4,7 +4,7 @@
 * _2-d DEM optimization method presents an alternative to DEM comparison by elevation differences modeling. In it's general version (3.d, 4.d etc., etc.) is not limited to the comparison/evaluation of only 2 DEMs but can handle 3 DEMs, 4 DEMs at the same time, etc. etc._
 * A YouTube video is available at https://vimeo.com/253018987
 # Table 1: Cluster centroids 
-See SVR.Clusters https://github.com/miliaresis/SVR.CLUSTERS for min/max statistics and feature space visualization before you derive any conclusions.
+See SVR.Clusters https://github.com/miliaresis/SVR.CLUSTERS for min/max statistics and feature space visualization before you derive any conclusions. K-means clustering followed by exhausted NBG clasification (177 iterations) are used for centroids/cluster definition.
 
 | Clusters  	| Mean 	|   (m)	|       	| st.dev. 	|    (m)  	|         	| Occurrence 	|            	|
 |-----------	|------	|------	|-------	|---------	|---------	|---------	|------------	|------------	|
