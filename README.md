@@ -3,6 +3,20 @@
 * A win python program (https://winpython.github.io/) consiting of 3 modules **dmr_mg.py** and the 2 library MODULEs **dmr_data_headers**, & **dmr_myf.py**.
 * _2-d DEM optimization method presents an alternative to DEM comparison by elevation differences modeling. In it's general version (3.d, 4.d etc., etc.) is not limited to the comparison/evaluation of only 2 DEMs but can handle 3 DEMs, 4 DEMs at the same time, etc. etc._
 * A YouTube video is available at https://vimeo.com/253018987
+# Cluster centroids 
+(also see SVR.Clusters for min/max statistices and feature space visualization before you derive any conclusions)
+
+| Clusters  	| Mean 	|      	|       	| st.dev. 	|         	|         	| Occurrence 	|            	|
+|-----------	|------	|------	|-------	|---------	|---------	|---------	|------------	|------------	|
+| Centroids 	| ALOS 	| SRTM 	| ASTER 	| ALOS    	| SRTM    	| ASTER   	| pixels     	| %          	|
+| 1         	| 1.9  	| 1.7  	| -3.5  	| 0.5     	| 0.5     	| 1       	| 1102976    	| 15.8       	|
+| 2         	| 3.5  	| 3.2  	| -6.7  	| 0.5     	| 0.4     	| 0.9     	| 1167599    	| 16.7       	|
+| 3         	| 1.7  	| 1.6  	| -3.3  	| 22.2    	| 20.2    	| 42      	| 522388     	| 7.5        	|
+| 4         	| 5.3  	| 4.8  	| -10.1 	| 0.6     	| 0.5     	| 1.1     	| 1132675    	| 16.2       	|
+| 5         	| -4.6 	| -4.2 	| 8.7   	| 2       	| 1.8     	| 3.8     	| 1006213    	| 14.4       	|
+| 6         	| -0.3 	| -0.3 	| 0.7   	| 0.8     	| 0.7     	| 1.5     	| 1076842    	| 15.4       	|
+| 7         	| 8.4  	| 7.6  	| -15.9 	| 1.5     	| 1.3     	| 2.8     	| 986008     	| 14.1       	|
+
 # Data
   * Multi-(2-d) dimensional (ALOS median & average) DEMs of SE Zagros Ranges. Mendeley Data,  v.4, _**http://dx.doi.org/10.17632/z4nxdjdyys.4**_ [_It is applied to ALOS median & average DEMS, aiming to stretch (in accuracy terms) the method to it's limits_] 
  * Multi-(2-d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data, v.5, _**http://dx.doi.org/10.17632/k9zpyh8c9k.5**_
