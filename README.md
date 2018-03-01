@@ -22,7 +22,6 @@ See SVR.Clusters https://github.com/miliaresis/SVR.CLUSTERS for min/max statisti
   * Multi-(2-d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data, v.5, _**http://dx.doi.org/10.17632/k9zpyh8c9k.5**_
   * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.15, _**http://dx.doi.org/10.17632/bswsr3gpy2.15**_
   * Multi-(4-d) dimensional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.10, _**http://dx.doi.org/10.17632/fbd9pd6hnx.10**_ [_it tests the software performance with 4-d data only, (since the vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ)_]
-* Publications
 * **Used in publications** *Quantification & evaluation of digital elevation models*
   1. Dimension reduction of multi-dimensional elevation data for DEMs optimization & evaluation (in review)
 ![Example of output images](https://github.com/miliaresis/SVR.DEM/blob/master/mapping.jpg)
