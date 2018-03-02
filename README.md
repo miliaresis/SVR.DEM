@@ -21,7 +21,7 @@
   * Multi-(2-d) dimensional (ALOS {median}, SRTM) DEM of SE Zagros Ranges. Mendeley Data, v.5, _**http://dx.doi.org/10.17632/k9zpyh8c9k.5**_
   * Multi-(3-d) dimensional (ALOS {median}, SRTM, ASTER) DEM of SE Zagros Ranges, Mendeley Data,  v.15, _**http://dx.doi.org/10.17632/bswsr3gpy2.15**_
   * Multi-(4-d) dimensional (ALOS, SRTM, ASTER, NED)  DEM of Death Valley (CA). Mendeley Data, v.10, _**http://dx.doi.org/10.17632/fbd9pd6hnx.10**_ [_it tests the software performance with 4-d data only, (since the vertical datums among  a) ALOS, SRTM, ASTER GDEM and b) NED DTM differ)_]
-* **Used in publications** *Quantification & evaluation of digital elevation models*
+* **Publications** *Quantification & evaluation of digital elevation models*
   1. Dimension reduction of multi-dimensional elevation data for DEMs optimization & evaluation (in review)
   1. Miliaresis G., Paraschou Ch.V., 2011. An evaluation of the accuracy of the ASTER GDEM and the role of stack number: A case study of   Nisiros Island, Greece. *Remote Sensing Letters*  2(2):127-135. DOI:10.1080/01431161.2010.503667 
   1. Miliaresis G., Delikaraoglou D., 2009. Effects of Percent Tree Canopy Density and DEM Mis-registration to SRTM/NED Vegetation Height Estimates. *Remote Sensing* 1(2):36-49, DOI:10.3390/rs1020036 
