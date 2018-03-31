@@ -25,7 +25,7 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
          in your data dir.
     """
     Headers_ALL = ['dataDEM2', 'dataDEM1', 'dataDEM3', 'dataDEM4', 'dataDEM5',
-                   'dataDEM6']
+                   'dataDEM6', 'dataDEM7']
     print('Labels for x-axis, y-axis of images/histograms:\n        ', ML)
     print('Geographic extent of data: ', xy)
     print('AXES legends & Tables headers for rows  & columns',
@@ -185,5 +185,30 @@ def dataDEM6(clustering_options, tiff_import_options):
     T = tiff_import_options[0]
 # Sub-directory for image files or vector matrix
     LDIR = 'data5'
+    phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+
+
+def dataDEM7(clustering_options, tiff_import_options):
+    """ALOS, SRTM, ASTER, GDEMs (3 DEMs of death valley) """
+    print('\n---> ALOS,SRTM,ASTER GDEMs, Death Valley 1as-Lat/Lon,WGS84,EGM96')
+# Main figure labels (title, x-axis, y-axis)
+    ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
+    # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
+    xy = [-117.2068, -116.7065, 36.0866, 36.5869]
+# tics for axes of figures and cross-correlation matrix
+    x2 = ['A', 'S', 'G']
+    x3 = ['ALOS', 'SRTM', 'ASTER']
+# Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
+    Lmin = -156
+    Lmax = 2500
+    Rmin = -25
+    Rmax = 25
+# clustering method: Kmeans refined by NBG
+    clustermethod = clustering_options[1]
+# PIL Library is used for TIF file import
+    T = tiff_import_options[0]
+# Sub-directory for image files or vector matrix
+    LDIR = 'data7'
     phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
     return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
