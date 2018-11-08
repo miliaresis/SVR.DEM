@@ -25,7 +25,7 @@ def phead(xy, ML, x2, x3, Lmn, Lmx, Rmn, Rmx, LDIR, T, cm):
          in your data dir.
     """
     Headers_ALL = ['dataDEM2', 'dataDEM1', 'dataDEM3', 'dataDEM4', 'dataDEM5',
-                   'dataDEM6', 'dataDEM7']
+                   'dataDEM6', 'dataDEM7', 'dataDEM8']
     print('Labels for x-axis, y-axis of images/histograms:\n        ', ML)
     print('Geographic extent of data: ', xy)
     print('AXES legends & Tables headers for rows  & columns',
@@ -210,5 +210,55 @@ def dataDEM7(clustering_options, tiff_import_options):
     T = tiff_import_options[0]
 # Sub-directory for image files or vector matrix
     LDIR = 'data7'
+    phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+
+
+def dataDEM8(clustering_options, tiff_import_options):
+    """ALOS(median), SRTM DEMS, SE Zagros Ranges, great area"""
+    print('\n---> ALOS, SRTM, ASTER GDEMs, 1 arc sec, Lat/Lon, WGS84, EGM96')
+# Main figure labels (title, x-axis, y-axis)
+    ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
+    # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
+    xy = [54.17698, 54.95448, 27.02163, 27.71580]
+# tics for axes of figures and cross-correlation matrix
+    x2 = ['A', 'S']
+    x3 = ['ALOS', 'SRTM']
+# Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
+    Lmin = 132
+    Lmax = 2209
+    Rmin = -25
+    Rmax = 25
+# clustering method: Kmeans refined by NBG
+    clustermethod = clustering_options[1]
+# PIL Library is used for TIF file import
+    T = tiff_import_options[0]
+# Sub-directory for image files or vector matrix
+    LDIR = 'data4'
+    phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+    return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
+
+
+def dataDEM9(clustering_options, tiff_import_options):
+    """ALOS(median,average), SRTM,ASTER DEMS, SE Zagros Ranges, great area"""
+    print('\n---> ALOS, SRTM, ASTER GDEMs, 1 arc sec, Lat/Lon, WGS84, EGM96')
+# Main figure labels (title, x-axis, y-axis)
+    ML = ['H, m', 'Longitude,DD', 'Latitude, DD']
+    # Geograhic extent (X-LON-min, X-LON-max, Y-LAT-min, Y-LAT-max)
+    xy = [54.17698, 54.95448, 27.02163, 27.71580]
+# tics for axes of figures and cross-correlation matrix
+    x2 = ['A', 'S', 'G']
+    x3 = ['ALOS', 'SRTM', 'ASTER']
+# Histograms domain for data (eg. DEM) & reconstructed data (eg. DEM)
+    Lmin = 132
+    Lmax = 2209
+    Rmin = -25
+    Rmax = 25
+# clustering method: Kmeans refined by NBG
+    clustermethod = clustering_options[1]
+# PIL Library is used for TIF file import
+    T = tiff_import_options[0]
+# Sub-directory for image files or vector matrix
+    LDIR = 'test'
     phead(xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)
     return (xy, ML, x2, x3, Lmin, Lmax, Rmin, Rmax, LDIR, T, clustermethod)

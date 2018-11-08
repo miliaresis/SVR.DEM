@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on  17th of Jan., 2018
+Created on  17th of Jan. 2018, updated 07 of Nov. 2018
 
 @author: gmiliar (George Ch. Miliaresis)
 Dimensonality reduction for DEMs (SVR.DEM) by G.Ch. Miliaresis
@@ -837,7 +837,7 @@ def printHST(RLST, Fstring, xmin, xmax, x, f, MDLabel):
         RLST = LST
     for X in range(RLST.shape[1]):
         plt.figure(1)
-        plt.hist(RLST[:, X], bins=200, range=[xmin, xmax], normed=True,
+        plt.hist(RLST[:, X], bins=200, range=[xmin, xmax], density=True,
                  edgecolor='white')
         plt.title(x[X])
         plt.xlabel(MDLabel[0])
