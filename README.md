@@ -12,4 +12,4 @@
   * 4d (ALOS, SRTM, ASTER, & NED DEMs of Death Valley-CA-USA): https://data.mendeley.com/datasets/fbd9pd6hnx/10
 
 * **Figure 1:** Outputs (figure & images)
-  ![Example of output images](https://github.com/miliaresis/SVR.DEM/blob/master/mapping.jpg)
+  ![Example of output images](https://github.com/miliaresis/SVR.DEM/blob/master/mapping2.jpg)
