@@ -5,7 +5,7 @@
   * A video is available at https://vimeo.com/253018987
 * **Data**
   * 2-d case study (ALOS median & mean elevations for Zagros Ranges-Iran, just stretching the method to it's limits): https://data.mendeley.com/datasets/z4nxdjdyys/4
-  * 3-d case study
+  * 3-d case study (very small study area in Zagros Ranges-Iran):https://data.mendeley.com/datasets/bd2cdf833m/8
   * 3.5-d case study (Zagros Ranges-Iran, enlarged study area): https://data.mendeley.com/datasets/bswsr3gpy2/15
   * 4-d case study (Death Valley-CA-USA): https://data.mendeley.com/datasets/fbd9pd6hnx/10
 
