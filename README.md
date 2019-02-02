@@ -4,7 +4,7 @@
   * _2-d DEM optimization method presents an alternative to DEM comparison by elevation differences modeling. In it's general version (3.d, 4.d etc., etc.) is not limited to the comparison/evaluation of only 2 DEMs but can handle 3 DEMs, 4 DEMs at the same time, etc. etc._
   * A video is available at https://vimeo.com/253018987
 * **Data**
-  * 2-d case study (ALOS median & ALOS mean elevations for Zagros Ranges-Iran, just stretching the method to it's limits): https://data.mendeley.com/datasets/z4nxdjdyys/4
+  * 2d case study (ALOS median & ALOS mean elevations for Zagros Ranges-Iran, just stretching the method to it's limits): https://data.mendeley.com/datasets/z4nxdjdyys/4
   * 2d (ALOS & SRTM DEMs for Zagros Ranges): https://data.mendeley.com/datasets/k9zpyh8c9k/5
   * 3d (ALOS, SRTM & ASTER DEMs, very small study area in Zagros Ranges-Iran):https://data.mendeley.com/datasets/bd2cdf833m/8
   * 3.5d (Zagros Ranges-Iran, enlarged study area): https://data.mendeley.com/datasets/bswsr3gpy2/15
